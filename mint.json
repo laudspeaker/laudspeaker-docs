@@ -1,0 +1,118 @@
+{
+  "name": "Laudspeaker",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#2b31be",
+    "light": "#8084d9",
+    "dark": "#fc8131"
+  },
+  "topbarCtaButton": {
+    "type": "github",
+    "url": "https://github.com/laudspeaker/laudspeaker"
+  },
+  "topbarLinks": [
+    {
+      "name": "Get Started",
+      "url": "https://app.laudspeaker.com/signup"
+    }
+  ],
+  "anchors": [
+    {
+      "name": "GitHub",
+      "icon": "github",
+      "url": "https://github.com/Laudspeaker/Laudspeaker"
+    },
+    {
+      "name": "Community",
+      "icon": "slack",
+      "url": "https://laudspeakerusers.slack.com/join/shared_invite/zt-1li25huaq-BljJUA1Zm8dXvbZViAbMwg#/shared-invite/email"
+    },
+    {
+      "name": "Blog",
+      "icon": "newspaper",
+      "url": "https://laudspeaker.com/docs/blog/"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Overview",
+      "pages": [
+        "overview/introduction",
+        "overview/about"
+      ]
+    },
+    {
+      "group": "Getting Started",
+      "pages": [
+        "getting-started/setting-up-email",
+        "getting-started/sending-a-test-event",
+        "getting-started/setting-up-sms"
+      ]
+    },
+    {
+      "group": "Product Manual",
+      "pages": [
+        "product-manual/glossary",
+        "product-manual/journey-builder",
+        "product-manual/template-builder",
+        "product-manual/people-page",
+        {
+          "group": "Channels",
+          "pages": [
+            "product-manual/channels/email-message",
+            "product-manual/channels/sms-message",
+            "product-manual/channels/in-app-message",
+            "product-manual/channels/push-message"
+          ]
+        },
+        "product-manual/analyzing-results",
+        "product-manual/data-management",
+        "product-manual/event-integrations",
+        "product-manual/configurations-and-setings",
+        "product-manual/a-b-tests"
+      ]
+    },
+    {
+      "group": "Tutorials",
+      "pages": [
+        "tutorials/journey",
+        "tutorials/onboarding",
+        "tutorials/one-offs",
+        "tutorials/reengagement",
+        "tutorials/multiple-channels",
+        "tutorials/personalization"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "pages": [
+        "integrate/integrating-posthog-events",
+        "integrate/using-posthog-events-in-laudspeaker",
+        "integrate/import-postHog-users",
+        "integrate/integrating-custom-events"
+      ]
+    },
+    {
+      "group": "Deploy",
+      "pages": ["deploy/options"]
+    },    
+    {
+      "group": "Developer",
+      "pages": [
+        "developer/contributing-to-laudspeaker",
+        "developer/deploying-laudspeaker",
+        "developer/how-laudspeaker-works"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "twitter": "https://twitter.com/laudspeaker",
+    "linkedin": "https://www.linkedin.com/company/laudspeaker/about/",
+    "github": "https://github.com/Laudspeaker/Laudspeaker",
+    "slack": "https://laudspeakerusers.slack.com/join/shared_invite/zt-1li25huaq-BljJUA1Zm8dXvbZViAbMwg#/shared-invite/email"
+  }
+}

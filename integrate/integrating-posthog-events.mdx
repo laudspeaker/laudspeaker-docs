@@ -1,0 +1,33 @@
+---
+title: "Integrating PostHog Events"
+description: "Integrating PostHog with Laudspeaker is easy!"
+---
+
+There are two steps:
+
+1. Retrieve your Laudspeaker api key
+2. Installing the Laudspeaker app on your PostHog account
+
+## Laudspeaker api key[](#laudspeaker-api-key "Direct link to heading")
+
+- Navigate to the settings tab and click on api, you should be able to find your
+  api key there!
+
+## Installing the Laudspeaker app on PostHog[](#installing-the-laudspeaker-app-on-posthog "Direct link to heading")
+
+- All you have to do is navigate to the marketplace search for Laudspeaker and
+  then click install.
+- You will need to supply the Laudspeaker endpoint. If you are selfhosting this
+  is under you domain, otherwise if you are using our hosted solution it is
+  [app.laudspeaker.com/events/PostHog](http://app.Laudspeaker.com/events/PostHog)
+- You will need to add the laudspekaer api key from before
+- Finally you will need to supply the name of your email field. PostHog users
+  often save emails under similar field names like "email" "$email", "Email".
+  Specifying this information lets us know what to look for when persons are
+  detected in PostHog
+  - click save!
+
+### One final thing!
+
+- If you have users in PostHog already we recommend you check out the PostHog
+  user import page as well

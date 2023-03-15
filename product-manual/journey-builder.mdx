@@ -1,0 +1,120 @@
+---
+title: "Journey Builder"
+---
+
+## Introduction[](#introduction "Direct link to heading")
+
+- The Journey Builder is our no-code drag and drop tool with which you can
+  create complex flow charts describing which users should get messages and when
+  they should receive them.
+- We call each flow chart a “**journey**” and a journey has 3 main components,
+  **steps**, **triggers** and **messages**. A journey can be made up of as many
+  of those components as you want, can include time delays, branching and enough
+  logic to include complex rules.
+- We also require each journey to specify a “segment.” A segment is group of
+  users to which the journey **_could_** apply. A segment is defined by user
+  properties, you don’t need to specify the actual list of users, and a segment
+  can be as specific or broad as you want meaning it a journey could affect your
+  entire user base if you wanted.
+
+## Examples:[](#examples "Direct link to heading")
+
+Let’s take an example two step journey to make these concepts concrete, and then
+we’ll provide more formal descriptions.
+
+![Example Flow](/images/guides/product-manual/two_step-568d17efb763bbe80068b5d0e5675b20.png)
+
+In this example we have two steps, “pre sign up” and “post sign up”.
+
+The segment of users is intentionally left blank which means the segment
+includes everyone (ie this journey could apply to every user).
+
+![Example Flow](/images/guides/product-manual/segment-6bc6b564af2ec6c2c9bac5ddefd38e7c.png)
+
+Our trigger is the Sign Up event. The post sign up step includes an sms
+message - “Welcome to the app!”
+
+![Example Flow](/images/guides/product-manual/custom_event-4f64dbe5e5f82ac49656d378c7e39c4f.png)
+
+This journey specifies that any user who completes the Sign Up event moves from
+the pre sign up step to the post sign up step, and once they move there they
+immediately get an sms message “Welcome to the app.”
+
+If you wanted to do something slightly different lets say you wanted the journey
+to only apply to users who have credit card number on their user profile, and
+you wanted the text message to go out one hour after sign up, you would set up
+the journey like this:
+
+![Example Flow](/images/guides/product-manual/three_step-9f7a393f53a18ed12f869ad47e32d54e.png)
+
+The differences between the two include a segment definition in the second
+example that filters users on having an a credit card number that “exists” and
+we have a third step “after an hour get sms” that is triggered by a time delay
+one hour after entering the step “post sign up”
+
+## Recap of concepts[](#recap-of-concepts "Direct link to heading")
+
+So to recap:
+
+A step is some intermediate state a user can be, a state can include messages or
+not. And when you start a journey you can check how many users are in any given
+step at any point. If a step includes a message, the user will receive that
+message **_as soon as_** they enter that step\*
+
+A trigger is something that moves a user from one step to another step. It can
+be event based like a sign up event or it can be time based, and we will soon
+add more types of triggers.
+
+A segment if a grouping of users that the journey could apply to. One way of
+thinking about it is as a way to filter users. Maybe you want a journey to only
+apply to users who have a specific attribute or maybe you want no filters.
+
+A message can be of type email, sms, slack (in beta) or many more soon to come.
+
+\*as soon as is an abstraction, in practice if you have thousands or millions of
+users entering a step at once it will take time to send all those messages but
+you should still treat it as instantaneous when coming up with your journeys.
+
+## Starting, Pausing and Stopping a Journey[](#starting-pausing-and-stopping-a-journey "Direct link to heading")
+
+Once you are happy with your journey and you want it to set it live, you simply
+hit start. This will change the screen and your journey will now look like:
+
+![Example Flow](/images/guides/product-manual/journey_stats-6c5155790f74a220219379290c0b7e94.png)
+
+Each step will show some summary stats (in beta) summarizing how many users have
+reached a step, along with different conversion metrics. If you click into a
+step you will also be able to see a list of the users in that step.
+
+If for any reason you need to pause or stop a journey, you can click those
+buttons on the top right of the screen and no users will move steps at that
+point, and no more messages will be sent. If you pause the journey you can
+restart, but if you stop a journey you may not. If a user completes an action
+that would normally correspond to some trigger while a journey is paused that
+event is completely disregarded and the user will have to re do that action when
+the journey is live for it to effect the journey.
+
+## Defining triggers and matching events on your site or app[](#defining-triggers-and-matching-events-on-your-site-or-app "Direct link to heading")
+
+### Custom Events[](#custom-events "Direct link to heading")
+
+We have made Laudspeaker extensible so you can define and send events from your
+site.
+
+The general structure of custom events should be:
+
+Given this structure, we can define a trigger like this:
+
+For more details check out the custom events tutorial
+
+### PostHog Events[](#posthog-events "Direct link to heading")
+
+If you have set up the PostHog app, events are sent automatically to
+Laudspeaker! To set it up check out the PostHog events tutorial.
+
+Right now we support custom PostHog events, and can also capture pageviews and
+autocapture events.
+
+To filter on a pageview, you would set up a trigger like this:
+
+To filter on a custom PostHog event you would set up a trigger like this:

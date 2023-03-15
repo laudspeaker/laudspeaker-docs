@@ -1,0 +1,83 @@
+---
+title: "Using PostHog Events in Laudspeaker"
+description:
+  "This is an advanced guide for using PostHog events with Laudspeaker, for
+  setting up you should check out the Integrating PostHog Events page."
+---
+
+## PostHog events intro[](#posthog-events-intro "Direct link to heading")
+
+You can think of PostHog events as falling into a few buckets. They are:
+
+- Pageview
+- Pageleave
+- Autocapture
+- Rageclick
+- Custom Events
+
+When you search on the events page on posthog you can tell these are the main
+categories of events that posthog enables
+
+![phcategories](/images/guides/integrate/phcategories-62ae17ed771fd120e352ce625ce5d559.png)
+
+- Pageviews are exactly what they sound like, you can use them to track which
+  pages users were on. Pageleaves are similar.
+- Autocapture tracks what users clicked on, as well as whether they input or
+  submited something.
+- Pageview/leave and Autocapture come out of the box if you are using the
+  javascript snippet/library.
+- Custom events are set up manually using `posthog.capture`.
+
+## PostHog Events in the journey builder[](#posthog-events-in-the-journey-builder "Direct link to heading")
+
+To use a posthog event you start off by clicking on event trigger, then changing
+the dropdown to posthog.
+
+![pht](/images/guides/integrate/pht-5a9c7228a4fbb0838499f7520c55b03d.png)
+
+You will see a text box, that shows the list of posthog events laudspeaker has
+seen so far. If you don't see an event straight away - dont worry, the list
+updates periodically and only when the event is sent to laudspeaker for the
+first time.
+
+### Using Pageviews[](#using-pageviews "Direct link to heading")
+
+- Pageviews are a very powerful tool in designing journeys
+- To use them effectively you will want to filter a page view on the url that
+  you wish to trigger a message on
+- You can do that on Laudspeaker like this:
+
+![phpageview](/images/guides/integrate/phpageview-d70858c33ad2f3bd81f6e876cb0b60ca.png)
+
+- We do not yet support other filters (as off 2/3/23) but will add them soon.
+
+### Using Autocapture[](#using-autocapture "Direct link to heading")
+
+- Autocapture events correspond to "clicks", "changes", and "submits".
+- In PostHog they look like these events:  
+  ![live](/images/guides/integrate/phlive-8c4624d634d5eea44f870893c98f3819.png)
+- We don't yet support filters on these events, so we would not yet recommend
+  using them to trigger messages as they will not be specific enough to be
+  useful. Our next release will add more functionality.
+
+### Using Custom Events[](#using-custom-events "Direct link to heading")
+
+- As mentioned before custom events are specified by the capture method.
+- Here's an example of how we use the custom event: "SignUpProps"
+
+In our application:
+
+```js
+posthog.capture("SignUpProps", {
+  $set: {
+    email: signUpForm.email,
+    firstName: signUpForm.firstName,
+    lastName: signUpForm.lastName,
+    laudspeakerId: response.data.id,
+  },
+});
+```
+
+You can see the custom events in Laudspeaker:
+
+![signup](/images/guides/integrate/signup-3b6d2117f62bc79f7a00914b5d8e43b1.png)
