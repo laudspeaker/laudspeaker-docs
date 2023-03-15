@@ -1,0 +1,42 @@
+---
+title: "Integrating Custom Events"
+---
+
+### Custom events endpoint integration[](#custom-events-endpoint-integration "Direct link to heading")
+
+- Example Post request
+
+If you are using the custom events endpoint, you will want to make a request
+like the following:
+
+```json
+POST /events/custom HTTP/1.1
+Authorization: Api-Key iAnL3k5o3Sp41xin9J0ps0DM48swWFYpyuUvLUBI
+Host: api.laudspeaker.com
+Accept: application/json
+Content-Type: application/json
+Content-Length: 107
+
+{
+    "externalId": "f5o3Sp41xin9J0gsd4354",
+    "slackId": "U01T54ZD8CD",
+    "event": "your_event_name"
+}
+
+```
+
+[Here's a loom clip](https://www.loom.com/share/33671c05a0434b688afc5a6c744dc1e9)
+showing how to test.
+
+You can use the method pasted here and simply change \[YOUR FIELD\]
+
+```ts
+ async findByCustomId(account: Account, slackId: string): Promise<CustomerDocument> {
+    const customers = await this.CustomerModel.find({ ownerId: (<Account>account).id, [YOUR FIELD]: [YOUR FIELD] }).exec()
+    return customers[0];
+    //return found;
+  }
+
+```
+
+`this.customersService.findByCustomId(account, ev.[YOUR FIELD])`

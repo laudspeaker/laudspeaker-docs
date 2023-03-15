@@ -1,0 +1,135 @@
+---
+title: "Setting up and testing a simple journey"
+description: "Let's set up and test a two step sign up journey."
+---
+
+This is what the final result will look like:
+
+![tre](/images/guides/getting-started/journeywithtrigger-a15b1be51e22289900eb1ab889dc1e5b.png)
+
+At a high level this is how the journey will work:
+
+- User signs up to your service
+- Your service notifies Laudspeaker that a new user signed up
+- Laudspeaker searches through your active journeys
+- Laudspeaker finds the user has activated a trigger in a specific journey
+- Laudspeaker moves the user to the next step in that journey
+- The next step includes an an email message, so Laudspeaker sends a Welcome
+  e-mail to the User.
+
+### Some set up[](#some-set-up "Direct link to heading")
+
+For this you’ll need:
+
+- A free Laudspeaker account
+- A free Postman account
+- A working e-mail address
+  - If you’re just testing out Laudspeaker, I’d recommend using a temporary
+    email service.
+
+I’m Using Laudspeaker’s Free3 email as my E-mail provider. This sends up to 3
+test e-mails to my account e-mail to help try out Laudspeaker. You can copy
+these settings to follow along.
+
+![free3](/images/guides/getting-started/free3-fd6efe5a1754bffaa74ce344e40efe9d.png)
+
+1. Create Journey
+   1. Navigate to Journey Builder
+   2. Click the Create Journey button
+   3. I’ll call mine “two-step-journey” (keep note of this)
+   4. Click Create.
+   5. You might see a warning referring to no Customer Segment. This means our
+      audience is not yet defined. Let’s target the person we added in the
+      previous segment.
+   6. Click “Define Segment in the dashboard near “Journey Type”.  
+      ![warning](/images/guides/getting-started/segmentwarning-6b35be94bebd2fd871a37da8d7320f1f.png)
+   7. Type in “All” and keep affirming. Without any specifications - the app
+      will let you target all your contacts.  
+      ![seg](/images/guides/getting-started/segmentdef-d492ce0e88c244a21f937fb1a7f9999c.png)
+   8. Create two New Steps
+      1. \_“Not Signed Up”\_At this Step, the User has yet to sign up for your
+         service. When a condition is met, a trigger attached to this Step will
+         activate and your User will continue to the next Step.
+      2. “Signed Up” At this Step, the User has registered to your service. At
+         this point, you’ll want to send them a Welcome Email to introduce them
+         to your product.  
+         ![two](/images/guides/getting-started/twojourneys-b791064028e014ed1441c36c727aa98f.png)
+2. Create Trigger between the two nodes.
+   1. Click the first node then click “Event Based” under “Triggers”.
+   2. Click Add New Condition
+   3. Under the Custom Field, write the following
+      1. “Event”
+      2. string
+      3. is equal to
+      4. “SignUp”  
+         This means that once the Journey is active, it will await requests.
+         However, it will only activate the trigger if the request contains an
+         object, with the key`"Event"` with a value equal to `"Sign Up"` . If
+         this is included in the body of the request, then the trigger will
+         activate.
+3. Drag the lightning bolt icon from one to the next.
+
+![tre](/images/guides/getting-started/journeywithtrigger-a15b1be51e22289900eb1ab889dc1e5b.png)
+
+Great! now the trigger of the first step is linked to the Second Step. This
+means when the trigger is activated, the User will travel to the “Signed Up”
+step, resulting in a message being sent to their inbox!
+
+1. Select the “Signed Up” node
+   1. Click E-Mail under Messages and select any template you have available.
+   2. Click Export.
+2. Click Save
+3. Click Start.
+
+Congratulations, your journey is now active!
+
+## How to test your Journey[](#how-to-test-your-journey "Direct link to heading")
+
+1. Open up Postman
+2. Create a new workspace and create a new \***\*\*\***Collection\***\*\*\***
+3. Change the dropdown to POST and the url to
+   `[https://api.laudspeaker.com/event](https://api.laudspeaker.com/events)s/`
+4. Click the Headers tab below where you’ve entered the URL.
+   1. Under KEY, write `Authorization`
+   2. Under VALUE, write `Api-Key XXXXXXXXXXX...`
+      1. Replace the Xs with your actual API Key from Laudspeaker.
+      2. You can find it in your Laudspeaker Settings under the API tab.
+      3. **Please do not share your API key with anyone!**
+
+![apihead](/images/guides/getting-started/apiheader-6678abf96f7eac2387141365a5f41935.png)
+
+These last steps have made it possible for us to identify your Laudspeaker
+account and correctly associate events. Our next step is to fire the trigger.
+Once the trigger is fired, you should receive an email in your temporary email
+address to confirm that the multistep journey has occured.
+
+1. Click the Body tab in your Postman workspace and enter the following snippet
+   of code. Make sure to replace the email with the temporary email associated
+   with the test “person” you’ve added to your Laudspeaker Audience earlier in
+   this tutorial.
+
+![qwe](/images/guides/getting-started/postmanreq-ab7953e24554b83e404865cd045e0d34.png)
+
+```json
+{
+  "correlationKey": "email", // This can be any key associated with the user
+  "correlationValue": "target_user@email.com", // email of User
+  "event": { "Event": "SignUp" } // Name of your Journey
+}
+```
+
+The `correlationKey` and `correlationValue` will be the information required to
+target the User in your Userbase. **If you are using the Free 3 Emails setting,
+you must use your Account email.**
+
+`event` refers to the event you specified in the trigger
+
+Hit the big Send button. If you want to make sure things are going ok, you can
+also open up the Console which is hidden in the bottom left.
+
+You should get a 201 response code, indicating that the request has succeeded
+and has led to the creation of some resource in Laudspeaker
+
+![fda](/images/guides/getting-started/postmanres-09427a69c1e9aa78beee21a557f4253a.png)
+
+Check your email inbox to find an email from your Journey!
