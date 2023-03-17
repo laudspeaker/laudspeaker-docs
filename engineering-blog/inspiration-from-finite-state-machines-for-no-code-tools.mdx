@@ -1,0 +1,125 @@
+---
+title: "Inspiration from finite state machines for no code tools"
+---
+
+What do vending machines, traffic lights, and our no code tool have in common?
+
+![vending machine](/images/eng-blog/vending_machine.jpeg)
+![traffic lights](/images/eng-blog/traffic_lights.jpeg)
+![Example Flow](/images/guides/product-manual/two_step-568d17efb763bbe80068b5d0e5675b20.png)
+
+
+### TLDR
+There's a summary at the bottom of this article!
+
+### The Origins of Laudspeaker's design
+
+Eight months ago we decided to build an MVP of Laudspeaker, a drag and drop, no-code, editor for designing messaging workflows. We wanted our users to be able create flow charts, which we called "journeys", that encapsulate logic defining how and when to reach the users of their own applications. The journeys would be used to "engage" or (re)activate customers, for example sending reminders about new products or features, sending newsletters, or reminding customers about abandoned shopping carts.
+
+When we started to design the Laudspeaker MVP, it was not clear how to begin, since resources about building no code tools from first principles are not readily available despite their recent uptick in popularity. We did have experience using our competitor’s products - one of the founders had used braze at a previous role in product and had a laundry list of issues with it. The problem with fixing a hundred small issues, though, was that it seemed more like treating symptoms of a problem rather than treating the underlying cause.
+Instead of iterating on the current offerings, we wanted to begin from first principles: define the problem abstractly, boil it down to into as few basic abstract concepts as possible and then see if these core concepts completely 'cover' a set of common real world uses.
+
+We included complex examples in our  uses, to test the limits of our concepts. For example we included:
+
+All visitors who
+
+1. have signed up to an ecommerce site
+2. have added a sku to their cart
+3. have NOT completed a transaction
+4. live in Atlanta
+should receive
+5. an sms only during black Friday
+6. an email every other day
+
+For us our core value is being able to automatically trigger cross channel messages, so two core concepts immediately leapt out: Triggers and messages. A message would be an email or an sms. And you could imagine a user completing some action acting as a trigger. 
+
+These concepts while a good start didn't completely capture what we wanted to do; for example how do we verify only users in atlanta get emails, how do we verify that the email is sent only during black friday? Triggering could also be more subtle: how do you trigger in the absence of an event? (hint: time is involved)
+
+We iteratively added new concepts, and rubber ducked them against our hypothetical example use cases until we could solve each of them and initially ended up with events, triggers, steps, and audiences. We defined each in the following way:
+
+- An event is an external action that should trigger some change in laudspeaker.
+
+- An audience is some subset of users.
+
+- A trigger is a set of conditions that move a user from one audience to another audience
+
+- A message is a member of some set of email, sms, slack etc.
+
+### Missing Engineering Design Principles
+
+Even with these concepts however something felt missing - when we looked at the existing products, they also mostly had versions of our concepts at play yet still felt hard to grasp or somewhat incomplete. In particular with existing solutions it was hard to tell if a user was going to be sent a message, had been sent a message or why a message was sent. What was missing, after some rumination, was a clear understanding and separation of 'state' from 'logic'. Here logic pertained to when and who to send messages to, state tracked whether a user had been sent a message or not. We realised there are a number of great engineering abstractions to help with this. They included Directed Acyclic Graphs (DAGs), Finite State Machines (FSMs), and other more esoteric automata (like Petri Nets).
+
+We considered each of them in detail, and also looked to see if they had been used as the idea behind other tools and software we knew. DAGs in particular seemed to be pretty popular, and are used in a number of graphical applications, including tools like Apache Airflow. Airflow was an instructive example for us to study, because at a high level they are many similarities: Airflow is "a platform that lets you build and run workflows"; we too are defining workflows but specific to customer messaging.
+
+Some of the nice properties of DAGs are they are easy to visualize, have a clear start and end point, can be used to separate state and logic, and are amenable to parallelization. One major issue for us however, was by definition they don't include cycles. One of our example real world use cases was:
+
+Whenever a user clicks on a button in an app, send them a push notification.
+
+The number of times a user clicks the button is not predefined, and a DAG would not be able to capture this case.
+
+### (Visual) Programming languages and Finite State Machines
+
+This led us to consider directed graphs more generally, but another realization helped us here. A Visual drag and drop editor is in some non-trivial way akin to a (visual) programming language! With this small insight we decided to revisit some theory we had learnt at university - in particular the theory of computation.
+
+We wanted our users to be able to easily drag and drop components in our tool to design complex journeys that could include branching (if statements), loops, and could easily be used to track state. Given these requirements, and the fact we wanted to keep our tool simple, a great abstraction to use here was that of finite state machines. From wikipedia:
+
+"a FSM can be in exactly one of a finite number of states at any given time. The FSM can change from one state to another in response to some inputs; the change from one state to another is called a transition."
+
+Graphically they can be represented like this:
+
+![vending machine](/images/eng-blog/fsm2.png)
+
+They include loops, and it is easy to keep track of which state you are in.
+
+When converting our concepts to a finite state machine, the design seemed to click and the mappings were simple:
+
+**Mappings** 
+    <table>
+      <tbody>
+        <tr>
+          <td align="left" valign="middle">
+              Our Concept :
+          </td>
+          <td align="left" valign="middle">
+              FSM concept
+          </td>
+        </tr>
+        <tr>
+          <td align="left" valign="middle">
+              A step :
+          </td>
+          <td align="left" valign="middle">
+              FSM state
+          </td>
+        </tr>
+        <tr>
+          <td align="left" valign="middle">
+              A trigger :
+          </td>
+          <td align="left" valign="middle">
+              FSM state transition
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+A step became the building block of our customer journeys, and could include a message.
+
+[show image of a step]
+
+If a user is in a particular step, you can be sure they have received the message that is in that step.
+
+[show image of 2 steps with a transition between them]
+
+If a user completes an action that is defined in a trigger, they move to another step (the transition). If that next step contains a message, the user will receive the message on entering that step.
+
+Another nice property of the FSM abstraction for us, was that we felt it would be extensible as we added more functionality. We are planning to add random branching soon, so that a user who completes a trigger could randomly be moved to any one of many different states. The theory of non-deterministic FSMs, and its equivalence to deterministic FSms means we won't have to change our design principles to handle this.
+
+Finally, an under-appreciated bonus of using FSMs, is that ease with which we can describe a journey: we simply need a state transition diagram, and knowledge about a users current state to capture relevant information. If you want to track a users history you simply track previous states. You could imagine a future, where if Laudspeaker users wish they could describe our journeys both visually and as code thus opening up the ability to define dynamic journeys; you could write a program to define hundreds or thousands of similar journeys differing in a couple of parameters automatically, and could easily log and test them.
+
+If you found this article interesting, or believe we missing a few ideas, or made a mistake let us know - one of the benefits of building an open source prodect / product is we can all benefit from the community’s input!
+
+### Summary:
+
+**Visual editors are easy to use and popular, but often lack clear engineering principles in their design. There are a few options to choose from when modeling these editors, including Directed Acyclic Graphs and Finite State Machines, depending on the user requirements and how the entities you transact on are defined. In the case of Laudspeaker, the customer journey was modeled as a finite state machine, with customer actions/attributes as the base set of transitions and messaging steps as the various states.**

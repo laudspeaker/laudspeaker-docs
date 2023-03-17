@@ -95,17 +95,22 @@
         "integrate/import-postHog-users",
         "integrate/integrating-custom-events"
       ]
-    },
-    {
-      "group": "Deploy",
-      "pages": ["deploy/options"]
-    },    
+    },   
     {
       "group": "Developer",
       "pages": [
+        {
+          "group": "Deploy",
+          "pages": ["developer/deploy/options"]
+        }, 
         "developer/contributing-to-laudspeaker",
-        "developer/deploying-laudspeaker",
         "developer/how-laudspeaker-works"
+      ]
+    },
+    {
+      "group": "Engineering Blog",
+      "pages": [
+        "engineering-blog/inspiration-from-finite-state-machines-for-no-code-tools"
       ]
     }
   ],
