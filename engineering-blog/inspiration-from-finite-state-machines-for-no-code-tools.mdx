@@ -106,15 +106,15 @@ When converting our concepts to a finite state machine, the design seemed to cli
 
 A step became the building block of our customer journeys, and could include a message.
 
-[show image of a step]
+![vending machine](/images/eng-blog/step.png)
 
 If a user is in a particular step, you can be sure they have received the message that is in that step.
 
-[show image of 2 steps with a transition between them]
+![Example Flow](/images/guides/product-manual/two_step-568d17efb763bbe80068b5d0e5675b20.png)
 
 If a user completes an action that is defined in a trigger, they move to another step (the transition). If that next step contains a message, the user will receive the message on entering that step.
 
-Another nice property of the FSM abstraction for us, was that we felt it would be extensible as we added more functionality. We are planning to add random branching soon, so that a user who completes a trigger could randomly be moved to any one of many different states. The theory of non-deterministic FSMs, and its equivalence to deterministic FSms means we won't have to change our design principles to handle this.
+Another nice property of the FSM abstraction for us, was that we felt it would be extensible as we added more functionality. We are planning to add random branching soon, so that a user who completes a trigger could randomly be moved to any one of many different states. The theory of non-deterministic FSMs, and its equivalence to deterministic FSMs means we won't have to change our design principles to handle this.
 
 Finally, an under-appreciated bonus of using FSMs, is that ease with which we can describe a journey: we simply need a state transition diagram, and knowledge about a users current state to capture relevant information. If you want to track a users history you simply track previous states. You could imagine a future, where if Laudspeaker users wish they could describe our journeys both visually and as code thus opening up the ability to define dynamic journeys; you could write a program to define hundreds or thousands of similar journeys differing in a couple of parameters automatically, and could easily log and test them.
 
