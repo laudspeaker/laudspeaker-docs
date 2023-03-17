@@ -49,6 +49,8 @@ We iteratively added new concepts, and rubber ducked them against our hypothetic
 
 Even with these concepts however something felt missing - when we looked at the existing products, they also mostly had versions of our concepts at play yet still felt hard to grasp or somewhat incomplete. In particular with existing solutions it was hard to tell if a user was going to be sent a message, had been sent a message or why a message was sent. What was missing, after some rumination, was a clear understanding and separation of 'state' from 'logic'. Here logic pertained to when and who to send messages to, state tracked whether a user had been sent a message or not. We realised there are a number of great engineering abstractions to help with this. They included Directed Acyclic Graphs (DAGs), Finite State Machines (FSMs), and other more esoteric automata (like Petri Nets).
 
+### Directed Acyclic Graphs (DAGs)
+
 We considered each of them in detail, and also looked to see if they had been used as the idea behind other tools and software we knew. DAGs in particular seemed to be pretty popular, and are used in a number of graphical applications, including tools like Apache Airflow. Airflow was an instructive example for us to study, because at a high level they are many similarities: Airflow is "a platform that lets you build and run workflows"; we too are defining workflows but specific to customer messaging.
 
 Some of the nice properties of DAGs are they are easy to visualize, have a clear start and end point, can be used to separate state and logic, and are amenable to parallelization. One major issue for us however, was by definition they don't include cycles. One of our example real world use cases was:
@@ -120,7 +122,7 @@ Finally, an under-appreciated bonus of using FSMs, is that ease with which we ca
 
 ### Thanks for Reading
 
-If you found this article interesting, or believe we missing a few ideas, or made a mistake let us know (you can email or tweet at us!) - one of the benefits of building an open source prodect / product is we can all benefit from the community’s input! Finally please star our repo!
+If you found this article interesting, or believe we are missing a few ideas, or made a mistake let us know (you can email or tweet at us!) - one of the benefits of building an open source prodect / product is we can all benefit from the community’s input! Finally please star our repo!
 
 ### Summary:
 
