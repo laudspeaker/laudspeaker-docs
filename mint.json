@@ -60,6 +60,7 @@
         "product-manual/journey-builder",
         "product-manual/template-builder",
         "product-manual/people-page",
+        "product-manual/segments",
         {
           "group": "Channels",
           "pages": [
@@ -110,7 +111,7 @@
     {
       "group": "Engineering Blog",
       "pages": [
-        "engineering-blog/inspiration-from-finite-state-machines-for-no-code-tools"
+        "engineering-blog/finite-state-machines-and-drag-and-drop-editors"
       ]
     }
   ],
