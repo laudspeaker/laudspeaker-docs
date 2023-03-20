@@ -1,0 +1,35 @@
+---
+title: "People and Profiles"
+description: "Keeping track of your customers and users"
+---
+
+### Introduction
+The People page, contains a view of all the users/customers you have interacted with - you could think of it as a mini CRM. We show the laudspeaker id, and an email (if it exists) for the users in the table. 
+![Example Flow](/images/guides/product-manual/people.png)
+
+If you click on any of the people listed, you will see their Profile, which includes information about them including user attributes and a timeline of communications they have recieved through Laudspeaker.
+![Example Flow](/images/guides/product-manual/person.png)
+
+### Creating a Person
+You can create people manually, or if you have an event integration set up, profiles will be created automatically, as an event with that person reaches Laudspeaker.
+
+To create a person manually, first click on the "new person" button on the people page. This will take you to an empty profile page like this:
+
+![Example Flow](/images/guides/product-manual/people_edit.png)
+
+You can now add attributes, by clicking on edit, and then on new attribute.
+
+![Example Flow](/images/guides/product-manual/people_new_attr.png)
+
+Finally when you are done, adding attributes, you can save.
+
+![Example Flow](/images/guides/product-manual/people_save.png)
+
+### Editing a Person
+
+You can also edit any person, whether you initially created the person manually, or if they were created automatically. Just click on edit, and add attributes.
+
+### Syning Users, Events and Profiles
+If you want to import your users from a product analytics service (like PostHog), we can do that! This can currently be done in two ways, you can either set this up in Onboarding, or in Settings. Once completed the users will appear in the People page, and you can click on a user to see their attributes. The exact attributes that are shown will depend on the product analytics software you have synced from.
+
+If you have an events integration, like the PostHog integration, if an event reaches Laudspeaker which has a user id that Laudspeaker has not seen before, we will automatially create a new profile. You do not have to do anything to set this up, beyond configuring the event integration.

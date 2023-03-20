@@ -48,6 +48,8 @@
     {
       "group": "Getting Started",
       "pages": [
+        "getting-started/get-started-as-marketer",
+        "getting-started/get-started-as-engineer",
         "getting-started/setting-up-email",
         "getting-started/sending-a-test-event",
         "getting-started/setting-up-sms"
@@ -59,7 +61,7 @@
         "product-manual/glossary",
         "product-manual/journey-builder",
         "product-manual/template-builder",
-        "product-manual/people-page",
+        "product-manual/people-and-profiles",
         "product-manual/segments",
         {
           "group": "Channels",
