@@ -10,6 +10,11 @@
     "light": "#8084d9",
     "dark": "#fc8131"
   },
+  "analytics": {
+    "posthog": {
+        "apiKey": "RxdBl8vjdTwic7xTzoKTdbmeSC1PCzV6sw-x-FKSB-k"
+    }
+  },
   "topbarCtaButton": {
     "type": "github",
     "url": "https://github.com/laudspeaker/laudspeaker"
@@ -113,7 +118,7 @@
     {
       "group": "Engineering Blog",
       "pages": [
-        "engineering-blog/finite-state-machines-and-drag-and-drop-editors"
+        "engineering-blog/finite-state-machines-dags-and-our-ux-logic"
       ]
     }
   ],
