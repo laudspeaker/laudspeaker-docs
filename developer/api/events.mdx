@@ -1,0 +1,81 @@
+---
+title: "Events"
+description: "Using external events as triggers in journeys."
+api: 'POST https://api.laudspeaker.com/events/'
+
+---
+
+<ParamField query="correlationKey" type="string" required>
+  This field specifies which user property we use to uniquely identify users. Common choices here include, `user_id`, `email`, `phone` 
+</ParamField>
+<ParamField query="correlationValue" type="string" required>
+  This field is the value that corresponds to the correlationKey so if the correlationKey is email, then correlationValue could be abe@laudspeaker.com
+</ParamField>
+<ParamField query="event" type="json" required>
+  This the event json that you want to pass to Laudspeaker. You can structure it how you want but you will need a top level `event` key 
+</ParamField>
+<ParamField query="payload" type="json" optional>
+  NB this feature is in beta! if you would like to programmatically fill in a message to be sent you
+</ParamField>
+
+### Endpoint
+
+| Method   | Description                                      |
+| -------- | ------------------------------------------------ |
+| `POST`   | https://api.laudspeaker.com/events/              |
+
+
+### Authentication
+
+Authorization: Api-key [yourapikey]
+
+### Examples
+
+<CodeGroup>
+```cURL curl example
+curl --location 'https://api.laudspeaker.com/events/' \
+--header 'Authorization: Api-Key [yourkeyhere]' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "correlationKey":"email",
+    "correlationValue":"abe@laudspeaker.com",
+    "event":{"Event":"SignUp"}
+}'
+```
+```HTTP http
+POST /events/ HTTP/1.1
+Host: api.laudspeaker.com
+Authorization: Api-Key [yourkeyhere]
+Content-Type: application/json
+Content-Length: 110
+
+{
+    "correlationKey":"email",
+    "correlationValue":"abe@laudspeaker.com",
+    "event":{"Event":"SignUp"}
+}
+```
+
+</CodeGroup>
+
+<ResponseExample>
+  ```json Example Response
+[
+    {
+        "workflowId": "5095a177-0b0c-40c5-8a86-7c85a0118843",
+        "jobIds": [],
+        "templates": []
+    },
+    {
+        "workflowId": "86a899f6-1a7e-4acc-bcdf-c20c570a5202",
+        "jobIds": [],
+        "templates": []
+    }
+]
+  ```
+</ResponseExample>
+
+
+
+
+

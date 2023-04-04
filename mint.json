@@ -19,6 +19,9 @@
     "type": "github",
     "url": "https://github.com/laudspeaker/laudspeaker"
   },
+  "api": {
+    "hidePlayground": true
+  },
   "topbarLinks": [
     {
       "name": "Get Started",
@@ -110,6 +113,10 @@
         {
           "group": "Deploy",
           "pages": ["developer/deploy/options"]
+        }, 
+        {
+          "group": "Api",
+          "pages": ["developer/api/events"]
         }, 
         "developer/contributing-to-laudspeaker",
         "developer/how-laudspeaker-works"
