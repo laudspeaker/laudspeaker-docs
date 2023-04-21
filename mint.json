@@ -67,6 +67,13 @@
       "group": "Product Manual",
       "pages": [
         "product-manual/glossary",
+        {
+          "group": "Journey Builder",
+          "pages": [
+            "product-manual/journey-builder/overview",
+            "product-manual/journey-builder/webhooks"
+          ]
+        },
         "product-manual/journey-builder",
         "product-manual/template-builder",
         "product-manual/people-and-profiles",
