@@ -1,15 +1,41 @@
 ---
-title: "A complete guide to setting up product triggered customer emails, sms, and push
+title: "A complete guide to setting up automated product triggered customer emails, sms, and push
 "
-description:
-  "This guide will help you quickly set up a robust system where actions customers take in your product trigger customer messages."
 ---
 
-### TLDR
-Roughly speaking these are the steps required:
+### What are Product Triggered Messages and Notifications?
+
+Product triggered messages are any messages (email, sms, push, in app) that are triggered because a user does something in your app or site. Examples include ecommerce drip campaigns such as an abandoned cart email, but can also include site specific actions like sending a push notification if a user clicks on a specific button, or showing a modal on your site to an anonymous user who hasn't created an account after they lurk for 3 minutes. 
+
+### The impact of triggered messages
+
+Product triggered messages are powerful ways of driving some action or metric you care about, and we think every digital product can and should benefit from them. 
+
+One of our customers sends a simple drip campaign to users who abandon the funnel on the purchase step and in our estimates has seen a 10% uplift in sales in their self serve product. Another has increased visitor to account creation conversion by 32% with a well timed and worded modal and banner.
+
+
+### Options for setting up product triggered messages
+
+There are two main ways of implementing product triggered messages: 
+1) You can **manually implement one-off api calls** with twilio / sendgrid / mailgun in your code whenever and wherever you want to send a message, and / or build your own in app and push logic
+2) You can **trigger messages with product analytics events and** a customer messaging platform (like **laudspeaker**)
+
+Each approach has its pros and cons, but in this guide we focus on the latter option, as we think its pros outweight its cons over time. Triggering messages with product analytics events + laudspeaker, makes it much easier to: 
+1) **Implement complex journey logic.**
+  Its difficult to implement drip campaigns with time delays, and complex branching logic with one-off api calls, a flow chart based editor is a better tool to visually understand what is happening.
+2) **Modify/change messaging on the fly without changing code**
+  Its very normal for people in the product/ marketing orgs to want to change, and modify customer messaging flows often to try and improve some kpi. Instead of having to rely on engineering for every modification, they can implement and makes changes on their own.
+3) **Track messaging campaigns results**
+  Systems like laudspeaker collate results, and correlate them to user outcomes. This functionalty comes out of the box
+4) **As a bonus laudspeaker is developer friendly**
+  We are working towards creating a one to one mapping from our visual journeys and code (our journeys are already modeled as finite state machines), so that everything can be tested, versioned and tracked in a similar way to code if you prefer.
+
+
+### TLDR For setting up a robust cutomer messaging system
+If you follow these steps, you can set up a robust system to send product triggered messages and notifications:
 1) Install product analytics system (posthog) ~ 15mins
-2) Specify user properties you want to use to personalize messages ~ 15mins
-3) Use identify call in product analytics system correctly ~ 15mins
+2) Specify the user properties that you may want to use in personalized messages ~ 15mins
+3) Set up identify call in product analytics system correctly ~ 15mins
 4) Install laudspeaker plugin to stream events to laudspeaker ~ 5mins
 5) (Optional) set up independent domain for email ~ 10mins
 6) Set up message sending services on Laudspeaker ~ 15mins
@@ -17,16 +43,18 @@ Roughly speaking these are the steps required:
 8) Design user journey ~ 10 mins
 9) #### Win 
 
+
+
 ### Picking a product analytics system
 
-- The first step is to set up a product analytics system like mixpanel, amplitude, posthog, heap 
+- The first step is to set up a product analytics system like mixpanel, amplitude, posthog or heap 
 - These systems track user actions on your site, both for anonymous users and for logged in users, and help you understand your product usage much better.
 - The analytics systems all use similar concepts, namely events and users. Where both events and users have properties, and events can set user properties.
 - To give a concrete example consider this onboarding flow on this page:
 when a user clicks the button to submit the form, a product analytics system will register a 'submit form' event on the button click, and the submit form event will set the user property 'occupation' to the value of : xxxx for the user who complete the action.
 - The main differences between the product analytics options for the purposes of this guide are 
-1) whether the solution automatically track all user actions without you writing extra code (posthog, heap), or whether you need to individually write code for each action you'd like to track (amplitude , mixpanel)
-2) whether the solution lets you stream export events out (posthog, amplitude(paid plan only)), or batch export (mixpanel). Stream export essentially means once an action is registered in the system it can notify some other system nearly instantaneously, while batch export may mean other systems are notified after a much longer delay (days, weeks, or must manually be started)
+  1) whether the solution automatically track all user actions without you writing extra code (posthog, heap), or whether you need to individually write code for each action you'd like to track (amplitude , mixpanel)
+  2) whether the solution lets you stream export events out (posthog, amplitude(paid plan only)), or batch export (mixpanel). Stream export essentially means once an action is registered in the system it can notify some other system nearly instantaneously, while batch export may mean other systems are notified after a much longer delay (days, weeks, or must manually be started)
 
 - we recommend posthog, its the easiest to implement, its open source and we generally believe its better to track everything first, and then figure out what the important metrics are rather than take the opposite approach.
 
@@ -87,31 +115,13 @@ When you are satisfied with the journey, you can set it live, and thats it! You 
 
 One interesting addition you can add to a journey is a webhook. We explain how a webhook can quantify ROI in this tutorial
 
-### Advantages to using twilio/sendgrid calls directly
-Some of you might be wondering what the advantage of using these tools are to, say manually implementing a twilio call in your code when you want to send a message. 
 
-Triggering messages with product analytics events + laudspeaker, makes it much easier to 
-1) Implement complex journey logic, 
-2) Modify/change messaging on the fly
-3) Track messaging campaigns results
-4) As a bonus laudspeaker is developer friendly
+### Winning - What can you do with customer messaging and what are the results you can expect?
 
-1) its difficult to implement drip campaigns with time delays, and complex branching logic with one-off api calls, a flow chart based editor is a better tool to visually understand what is happening.
-
-2) Its very normal for people in the product/ marketing orgs to want to change, and modify customer messaging flows often to try and improve some kpi. Instead of having to rely on engineering for every modification, they can implement and makes changes on their own.
-
-3) Systems like laudspeaker collate results, and correlate them to user outcomes. This functionalty comes out of the box
-
-4) We are working towards creating a one to one mapping from our visual journeys and code (our journeys are already modeled as finite state machines), so that everything can be tested, versioned and tracked in a similar way to code if you prefer.
-
-### What can you do with customer messaging and what are the results you can expect?
-
-tldr: You can meaningfully move the needle on some core kpi with the right messaging nudges! 
+You can meaningfully move the needle on some core kpi with the right messaging nudges! 
 
 If your product has a funnel for some core action, you can increase conversion between steps. 
 
-One of our customers sends a simple drip campaign to users who abandon the funnel on the purchase step and in our estimates has seen a 10% uplift in sales in their self serve product.
-
-You can also use Laudspeaker to do things that don't scale by being creative. One of our customers sends targeted emails with a calendly link and cc'es a team member when users drop off on a specific page. The team member is both notified of whom to target, and can proactively start a conversation if they want.
+You can also use Laudspeaker to do things that don't scale by being creative. Another one of our customers sends targeted emails with a calendly link and cc'es a team member when users drop off on a specific page. The team member is both notified of whom to target, and can proactively start a conversation if they want.
 
 Top of funnel messaging is also something that in our experience is neglected. There are many anonymous users who could convert into signed up users with the right messaging, and messages via in app messages or modals and banners could make a difference here too.

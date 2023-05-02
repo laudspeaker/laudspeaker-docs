@@ -97,6 +97,7 @@
     {
       "group": "Tutorials",
       "pages": [
+        "tutorials/guide-to-triggered-automated-email",
         "tutorials/journey",
         "tutorials/onboarding",
         "tutorials/one-offs",
