@@ -56,11 +56,15 @@
     {
       "group": "Getting Started",
       "pages": [
+        "getting-started/get-started-as-growth-engineer",
         "getting-started/get-started-as-marketer",
         "getting-started/get-started-as-engineer",
+        "getting-started/send-a-test-email",
+        "getting-started/setting-up-product-onboarding",
         "getting-started/setting-up-email",
         "getting-started/sending-a-test-event",
         "getting-started/setting-up-sms"
+        
       ]
     },
     {
