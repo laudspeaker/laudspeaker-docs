@@ -1,0 +1,49 @@
+---
+title: "Webhooks"
+---
+
+### Introduction
+
+We offer webhook functionality, as part of a journey. To create a webhook you should navigate to the templates section of the app.
+
+### Setting up a webhook
+We'll show you how to use a webhook with a real life example: making a post request to posthog about an email being sent to a specific user.
+
+The fist step is going to template page, and select the webhook dropdown when creating a new template
+
+You'll then need to specify the url you wish laudspeaker to notify, as well as the HTTP method, (we support GET or POST amongst others)
+
+For our example, we make the url `https://app.posthog.com/capture` and the method is `POST`
+
+To specify the content you'll need to click on the content tab, shown in the screenshot
+![full](/images/guides/product-manual/whfull.png)
+
+and then add the content, that you want to send over:
+
+We want to specify the id of the user who was sent an email, so we use the dynamic tag `{{ posthogId[0] }}` shown below
+
+```js
+{
+    "api_key": "someapikey",
+    "event": "email sent",
+    "properties": {
+        "distinct_id": "{{ posthogId[0] }}"
+    }
+}
+```
+
+You'll also then want to specify the type of content in the drop down. We used a json in this example
+![json](/images/guides/product-manual/whjson.png)
+
+You can test the webhook is properly configured, by first selecting a test user whose data will be used. To do this enter the email of a user, who exists in the people page in the "Test customer email" input 
+![mail](/images/guides/product-manual/whemail.png)
+
+Then click test! If its successful you'll see an appropriate response, and the webhook should have been registered by the its destination.
+
+### Using a webhook in a journey
+
+Now that we have a webhook template set up we can use it in a journey like a regular message step.
+
+Simply drag the webhook step to the journey and connect it to a preceding step with a trigger of your choice. In our journey we use a time delay step with a delay of 1 minute.
+
+![whj](/images/guides/product-manual/whexample.png)

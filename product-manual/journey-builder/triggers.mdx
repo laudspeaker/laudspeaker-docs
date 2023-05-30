@@ -1,0 +1,45 @@
+---
+title: "Triggers"
+description:
+  "Triggers are either external actions or logic that should move users from one step or message to another"
+---
+
+A trigger is something that moves a user from one step to another step. It could be an external event for example when a user signs up on your product or clicks a specific button or it can be time based, amongst other types of triggers.
+
+### Trigger Types
+
+At the moment we have 4 types of triggers: Wait Until, Time Delay, Time Window, Attribute
+
+#### Wait Until
+
+A Wait Until is a flexible trigger that is the best choice for when you want send a message after an external action has taken place. For example you may want to send a series of welcome emails to users who sign up for your application. In that case you could set a wait until trigger with a single branch. The single branch would filter for your sign up event. 
+
+Your journey would look like this:
+
+Your wait until branch would look like this.
+
+A wait until can also be used for the situation where you wait for a user to do something within a set amount of time, but if they don't take that action in the time interval then you send a different type message. For example lets go through a drip campaign. Lets say you have an online store where you want to send a user an abandoned cart email if they don't complete a purchase within a day. In that case you can set up the journey like this:
+
+And your wait until would have two branches, one with an event, and one with a time setting like this:
+
+Now if a user completes a purchase in the time limit, the user will not get an email, but if they don't they will.
+
+#### Time Delay
+
+A Time Delay Trigger allows you to move a user from one step to another after a fixed period of time. We give you the power to move users after a few minutes, a few hours, a few days up to a week or more right now.
+
+Here are a few examples of how you would set up a time delay trigger:
+
+#### Time Window
+
+A Time Window Trigger is slightly different to a time delay in that a time window will only move users from one step to another if its a specific time. For example say you wanted to send users an email on valentines day. Then you would set up a time window trigger set to Feb 14th like this:
+
+Time window triggers are great for promotions, sales, and keeping in contact with users on specific calendar events.
+
+#### Attribute Triggers
+
+Sometimes you want to move users to one step or another step depending on whether a user has a specific property or not. You can acheive this with attribute triggers. For example lets say you want to send users who live in a specific city an sms. If that city field is a saved property of your user you can set up an attribute trigger in the following way:
+
+
+
+<Warning>Coming soon!</Warning>

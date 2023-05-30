@@ -75,20 +75,29 @@
           "group": "Journey Builder",
           "pages": [
             "product-manual/journey-builder/overview",
-            "product-manual/journey-builder/webhooks"
+            "product-manual/journey-builder/messages-and-steps",
+            "product-manual/journey-builder/triggers",
+            "product-manual/journey-builder/branching",
+            "product-manual/journey-builder/jump-to-and-loops",
+            "product-manual/journey-builder/start-and-exit-steps",
+            "product-manual/journey-builder/swapping-nodes",
+            "product-manual/journey-builder/monitoring-a-live-journey"
           ]
         },
         "product-manual/journey-builder",
         "product-manual/template-builder",
         "product-manual/people-and-profiles",
         "product-manual/segments",
+        "product-manual/modal-designer",
         {
           "group": "Channels",
           "pages": [
             "product-manual/channels/email-message",
             "product-manual/channels/sms-message",
             "product-manual/channels/in-app-message",
-            "product-manual/channels/push-message"
+            "product-manual/channels/push-message",
+            "product-manual/channels/custom-modals",
+            "product-manual/channels/webhooks"
           ]
         },
         "product-manual/analyzing-results",
@@ -134,7 +143,8 @@
         ]
         }, 
         "developer/contributing-to-laudspeaker",
-        "developer/how-laudspeaker-works"
+        "developer/how-laudspeaker-works",
+        "developer/webhooks"
       ]
     },
     {
