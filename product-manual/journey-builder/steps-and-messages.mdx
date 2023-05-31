@@ -1,0 +1,65 @@
+---
+title: "Steps and Messages"
+description:
+  "How to use steps and messages"
+---
+
+Messages and other steps are the building blocks of journeys. If a user lands on a message step they will receive the type of message specified. In addition to message steps, we also have exit steps, and jump to steps. 
+
+### Message Types
+
+At the moment we have message steps for email, sms, in-app, push, custom modal. 
+
+#### Email
+
+An email step is exactly as it sounds a way. By adding an email step you are specifying an email should be sent to any user who lands on that step. 
+
+Setting up Email:
+
+To be able to add an email step you need to have set up an email sending provider like sendgrid or mailgun previously (either during onboarding or in settings). 
+
+How to use an email step:
+
+Simply drag the step onto your journey. Once you drag an email step onto your journey you need to specify which email template you want to send. You can create new email templates in our template designer.
+
+#### SMS
+
+By adding an sms step you are specifying an sms should be sent to any user who lands on that step. 
+
+Setting up SMS:
+
+To be able to add an sms step you need to have set up an sms sending provider like twilio previously (either during onboarding or in settings). 
+
+How to use an sms step:
+
+Simply drag the step onto your journey. Once you drag an sms step onto your journey you need to specify which sms template you want to send. You can create new sms templates in our template designer.
+
+#### In App
+
+By adding an in app step you are specifying an in-app message should be sent to any user who lands on that step. 
+
+Setting up In-App:
+
+To be able to add an sms step you need to add the Laudspeaker snippet to your site or app.
+
+How to use an sms step:
+
+Simply drag the step onto your journey. Once you drag an sms step onto your journey you need to specify which in-app template you want to use. For an indepth description of the in-app designer look here 
+
+#### Start Step
+
+Every journey automatically has a start step. This step is a visual aid to show the user where the journey begins and does not actually do anything. 
+
+#### Exit Step
+
+An exit step is a step that is optional, and can be added to any point in your journey. If a user lands on an exit step, that user will not progress to any other steps on the journey. If your journey is multibranched you may want to add multiple exit states.
+
+#### Jump to 
+
+A jump to allows you to connect steps in an arbitrary way, and also create loops in your journey if you wish.
+
+To use an jump to simply drag a jump to the next step box and then link up to your desired next node like this:
+
+
+
+<Warning>In progress!</Warning>

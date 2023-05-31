@@ -75,11 +75,12 @@
           "group": "Journey Builder",
           "pages": [
             "product-manual/journey-builder/overview",
-            "product-manual/journey-builder/messages-and-steps",
+            "product-manual/journey-builder/steps-and-messages",
             "product-manual/journey-builder/triggers",
             "product-manual/journey-builder/branching",
-            "product-manual/journey-builder/jump-to-and-loops",
+            "product-manual/journey-builder/loops",
             "product-manual/journey-builder/start-and-exit-steps",
+            "product-manual/journey-builder/starting-a-journey",
             "product-manual/journey-builder/swapping-nodes",
             "product-manual/journey-builder/monitoring-a-live-journey"
           ]
