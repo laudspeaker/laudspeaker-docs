@@ -1,0 +1,129 @@
+---
+title: "In-app modals and product tours"
+description:
+  "Examples with Modals, Tours, and other in-product messages."
+---
+In this guide, we go into more detail than the set up guide here
+
+### What are Product Triggered Messages and Notifications?
+
+Product triggered messages are any messages (email, sms, push, in app) that are triggered because a user does something in your app or site. Examples include ecommerce drip campaigns such as an abandoned cart email, but can also include site specific actions like sending a push notification if a user clicks on a specific button, or showing a modal on your site to an anonymous user who hasn't created an account after they lurk for 3 minutes. 
+
+### The impact of triggered messages
+
+Product triggered messages are powerful ways of driving some action or metric you care about, and we think every digital product can and should benefit from them. 
+
+One of our customers sends a simple drip campaign to users who abandon the funnel on the purchase step and in our estimates has seen a 10% uplift in sales in their self serve product. Another has increased visitor to account creation conversion by 32% with a well timed and worded modal and banner.
+
+
+### Options for setting up product triggered messages
+
+There are two main ways of implementing product triggered messages: 
+1) You can **manually implement one-off api calls** with twilio / sendgrid / mailgun in your code whenever and wherever you want to send a message, and / or build your own in app and push logic
+2) You can **trigger messages with product analytics events and** a customer messaging platform (like **laudspeaker**)
+
+Each approach has its pros and cons, but in this guide we focus on the latter option, as we think its pros outweight its cons over time. Triggering messages with product analytics events + laudspeaker, makes it much easier to: 
+1) **Implement complex journey logic.**
+  Its difficult to implement drip campaigns with time delays, and complex branching logic with one-off api calls, a flow chart based editor is a better tool to visually understand what is happening.
+2) **Modify/change messaging on the fly without changing code**
+  Its very normal for people in the product/ marketing orgs to want to change, and modify customer messaging flows often to try and improve some kpi. Instead of having to rely on engineering for every modification, they can implement and makes changes on their own.
+3) **Track messaging campaigns results**
+  Systems like laudspeaker collate results, and correlate them to user outcomes. This functionalty comes out of the box
+4) **As a bonus laudspeaker is developer friendly**
+  We are working towards creating a one to one mapping from our visual journeys and code (our journeys are already modeled as finite state machines), so that everything can be tested, versioned and tracked in a similar way to code if you prefer.
+
+
+### TLDR For setting up a robust cutomer messaging system
+If you follow these steps, you can set up a robust system to send product triggered messages and notifications:
+1) Install product analytics system (posthog) ~ 15mins
+2) Specify the user properties that you may want to use in personalized messages ~ 15mins
+3) Set up identify call in product analytics system correctly ~ 15mins
+4) Install laudspeaker plugin to stream events to laudspeaker ~ 5mins
+5) (Optional) set up independent domain for email ~ 10mins
+6) Set up message sending services on Laudspeaker ~ 15mins
+7) Design message template 
+8) Design user journey ~ 10 mins
+9) #### Win 
+
+
+
+### Picking a product analytics system
+
+- The first step is to set up a product analytics system like mixpanel, amplitude, posthog or heap 
+- These systems track user actions on your site, both for anonymous users and for logged in users, and help you understand your product usage much better.
+- The analytics systems all use similar concepts, namely events and users. Where both events and users have properties, and events can set user properties.
+- To give a concrete example consider this onboarding flow on this page:
+when a user clicks the button to submit the form, a product analytics system will register a 'submit form' event on the button click, and the submit form event will set the user property 'occupation' to the value of : xxxx for the user who complete the action.
+- The main differences between the product analytics options for the purposes of this guide are 
+  1) whether the solution automatically track all user actions without you writing extra code (posthog, heap), or whether you need to individually write code for each action you'd like to track (amplitude , mixpanel)
+  2) whether the solution lets you stream export events out (posthog, amplitude(paid plan only)), or batch export (mixpanel). Stream export essentially means once an action is registered in the system it can notify some other system nearly instantaneously, while batch export may mean other systems are notified after a much longer delay (days, weeks, or must manually be started)
+
+- we recommend posthog, its the easiest to implement, its open source and we generally believe its better to track everything first, and then figure out what the important metrics are rather than take the opposite approach.
+
+- That being said Amplitude is great too. Mixpanel is a strong option but currently its hard to stream events out of their system so we'd use amplitude over them. You may also be considering google analytics, we strongly recommend against them*
+
+### Installing a product analytics system
+- Installing the system is typically quite easy, you'll need to paste the product analytic's javascript snippet, and/or use the appropriate language library in your app / site.
+- For heap and posthog, after this step you are mostly done!
+- If your app has a signed in component, you'll want to track both anonymous users, and logged in users; and also be able to correlate the actions a user took as an anonymous user before they signed up, or when they are logged out. All the product analytics systems handle the correlation between anonymous and logged in users with something called an identify call. All you need to do is place the identify call in your code when a user signs up or logs in.
+- Typically in the identify call, its best practice to specify some user properties. We suggest you add user properties here that you may want to use in your communications, for example if you want to trigger an email with the users name, you may specicy in the identify call, the users first_name, and last_name as properties.
+
+This is an example of what we do:
+
+```snip
+	posthog.identify( signUpForm.email, { 
+        firstName: signUpForm.firstName,
+        lastName: signUpForm.lastName,
+        laudspeakerId: response.data.id,
+    });
+```
+
+For our messages, we need the email, firstName an lastName. Some of our clients also specify the user's company name, their location (city), whether the user is on a paid plan or free plan and so on.
+
+You may want to specify some properties for segmentation too that you may not use in messaging directly. 
+
+
+### Setting up the Laudspeaker Plugin
+
+After this step you are ready to install the laudspeaker plugin on posthog. This is really easy. Just go to the apps, search for laudspeaker and enable the plugin. You'll need to provide your Laudspeaker api key, and then provide the name of your email field. What we mean by that is your email field may be named $email, Email, _email or something else entirely - we need to know what you use. Similarly if you wish to use our texting capability, you'll need to provide your phone number field name too.
+
+After installing the plugin, you can see if you have done it correctly by navigating to the event-tracker page, and hittig refresh. PostHog events should start to appear.
+
+### (Optional) if you are using email: setting up another domain
+
+If you are planning to use email, we strongly recommend that you set up a separate domain for sending marketing emails from that used for transactional emails. What we mean by that is while you may send transactional messages from no-reply@yoursite.com or support@yoursite.com you may want to use something like hey@hello.yoursite.com for your marketing emails.
+
+Transactional emails contain information about an action the recipient has already taken, or contains information that is required to complete a action (like a password reset email, or an order number email for a purchase), while marketing emails, are emails where you intend to drive an action you want the recipient to take. 
+
+We want to separate email domains so that each type of message has its own inbox reputation. Marketing emails have much lower engagement from users, are sent much more frequently than transactional emails, and can often be labeled spam by users (or inboxes) and if you were to use one domain, transactional emails may start to be automatically tagged as spam, and this has a particularly adverse impact on user experience.
+
+### Setting up Sending APIs on Laudspeaker
+
+The next step is configuring the sending APIs on Laudspeakers side. What does this mean exactly? Laudspeaker determines the logic of who, when and how to send messages, but the actual sending is done under the hood by services of your choice like twilio or mailgun. To make the systems work together you need to add the appropriate API keys to Laudspeaker, for the relevant channels. To do this head over to the settings page, navigate to your desired channels and add the information. Here is the documentation for setting up email, sms, and push.
+
+### Designing a journey
+
+Now you're ready to send an actual message!
+
+To do that you'll want to design the actual message, and then design the logic behind who, when, and how your customers should receive the message.
+
+To design the actual message, you'll want to navigate to our template designer. You can check out this tutorial / the docs for designing them. One thing to mention is if you have existing designs, or are working with a designer you can have them import the HTML into the template designer. After you have the templates you are ready to design the "journey"
+
+We have a series of docs and tutorials on designing the journey here and here. The main things you need to understand are the ideas of triggers, and steps. A trigger can be an event coming in from PostHog for example, a button click or a sign up event, which will then lead to an email being sent. 
+
+We are working on making it easy to test journeys before setting them live, but for now if you want to test this tutorial will help
+
+When you are satisfied with the journey, you can set it live, and thats it! You have set up a system to automatically message users based on events, and logic.
+
+One interesting addition you can add to a journey is a webhook. We explain how a webhook can quantify ROI in this tutorial
+
+
+### Winning - What can you do with customer messaging and what are the results you can expect?
+
+You can meaningfully move the needle on some core kpi with the right messaging nudges! 
+
+If your product has a funnel for some core action, you can increase conversion between steps. 
+
+You can also use Laudspeaker to do things that don't scale by being creative. Another one of our customers sends targeted emails with a calendly link and cc'es a team member when users drop off on a specific page. The team member is both notified of whom to target, and can proactively start a conversation if they want.
+
+Top of funnel messaging is also something that in our experience is neglected. There are many anonymous users who could convert into signed up users with the right messaging, and messages via in app messages or modals and banners could make a difference here too.

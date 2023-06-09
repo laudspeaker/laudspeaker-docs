@@ -59,7 +59,7 @@
         "getting-started/get-started-as-growth-engineer",
         "getting-started/get-started-as-marketer",
         "getting-started/get-started-as-engineer",
-        "getting-started/send-a-test-email",
+        "getting-started/setting-up-modals-and-tours",
         "getting-started/setting-up-product-onboarding",
         "getting-started/setting-up-email",
         "getting-started/sending-a-test-event",
@@ -112,6 +112,7 @@
       "group": "Tutorials",
       "pages": [
         "tutorials/guide-to-triggered-automated-email",
+        "tutorials/guide-to-triggering-in-product-modals",
         "tutorials/journey",
         "tutorials/onboarding",
         "tutorials/one-offs",

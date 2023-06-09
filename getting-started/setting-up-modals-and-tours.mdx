@@ -1,0 +1,64 @@
+---
+title: "Setting up Modals and In-App Tours"
+description:
+  "Setting up Modals, Tours, and other in-product messages."
+---
+
+Setting up requires two parts: installation and testing
+
+### Installation
+
+The first step in setting up our product adoption tools is to install Laudspeaker. Currently we support installation via **npm** (node's package manager), and have a code snippet in beta. We will support other installation methods in the near future, please reach out if there is a specific method that matters to you.
+
+To install via npm:
+
+```
+npm install --save @laudspeaker/laudspeaker-js
+```
+
+After npm install you will want to include the package in your application in the following way:
+
+```
+import laudspeaker from 'laudspeaker-js'
+
+laudspeaker.init('<laudspeaker_api_key>', { apiHost: '<laudspeaker_instance_address>' });
+```
+
+Here is an example:
+
+```
+laudspeaker.init('3423444II21jU7GUfadfR9U1f', { apiHost: 'https://api.laudspeaker.com' });
+
+```
+
+you can see our github page here https://github.com/laudspeaker/laudspeaker-js
+
+### Testing
+
+To test the installation was set up correctly you can start your application, then in Laudspeaker you will want to design a simple modal, and create a simple journey. 
+
+1. From the home page click on the modal designer option.
+
+2. Feel free to design a basic modal.
+
+![1](/images/guides/getting-started/modal-des.png)
+
+3. Save the modal, and then navigate to the journey builder.
+
+4. Drag a singe modal step, and specify the modal you just designed.
+
+![2](/images/guides/getting-started/j1.png)
+
+Select all customers - don't worry about filtering for a subset of users right now
+
+![3](/images/guides/getting-started/j2.png)
+
+5. Now start the journey.
+
+![4](/images/guides/getting-started/j3.png)
+
+You should see your modal pop up in your application if you set up correctly.
+
+### Example App
+
+We've included a sample app, based off of docusaurus here. You can see where we added the Laudspeaker code. All you'll need to do is add the correct api key and the application should work as intended.
