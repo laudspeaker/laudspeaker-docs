@@ -12,7 +12,7 @@
   },
   "analytics": {
     "posthog": {
-        "apiKey": "RxdBl8vjdTwic7xTzoKTdbmeSC1PCzV6sw-x-FKSB-k"
+      "apiKey": "RxdBl8vjdTwic7xTzoKTdbmeSC1PCzV6sw-x-FKSB-k"
     }
   },
   "topbarCtaButton": {
@@ -63,7 +63,6 @@
         "getting-started/setting-up-email",
         "getting-started/sending-a-test-event",
         "getting-started/setting-up-sms"
-        
       ]
     },
     {
@@ -126,23 +125,57 @@
         "integrate/integrating-posthog-events",
         "integrate/using-posthog-events-in-laudspeaker",
         "integrate/import-postHog-users",
-        "integrate/integrating-custom-events"
+        "integrate/integrating-custom-events",
+        {
+          "group": "Messaging Channels",
+          "pages": [
+            {
+              "group": "Email",
+              "pages": [
+                "integrate/messaging-channels/email/sandbox",
+                "integrate/messaging-channels/email/mailgun",
+                "integrate/messaging-channels/email/sendgrid",
+                "integrate/messaging-channels/email/smtp",
+                "integrate/messaging-channels/email/mandrill",
+                "integrate/messaging-channels/email/mailchimp",
+                "integrate/messaging-channels/email/postmark",
+                "integrate/messaging-channels/email/sparkpost",
+                "integrate/messaging-channels/email/amazon-ses"
+              ]
+            },
+            {
+              "group": "SMS",
+              "pages": [
+                "integrate/messaging-channels/sms/twilio",
+                "integrate/messaging-channels/sms/vonage",
+                "integrate/messaging-channels/sms/podium",
+                "integrate/messaging-channels/sms/plivo",
+                "integrate/messaging-channels/sms/telnyx",
+                "integrate/messaging-channels/sms/wati",
+                "integrate/messaging-channels/sms/bandwidth"
+              ]
+            },
+            "integrate/messaging-channels/slack"
+          ]
+        }
       ]
-    },   
+    },
     {
       "group": "Developer",
       "pages": [
         {
           "group": "Deploy",
-          "pages": ["developer/deploy/options"]
-        }, 
+          "pages": [
+            "developer/deploy/options"
+          ]
+        },
         {
           "group": "Api",
           "pages": [
             "developer/api/events",
             "developer/api/upsert"
-        ]
-        }, 
+          ]
+        },
         "developer/contributing-to-laudspeaker",
         "developer/how-laudspeaker-works",
         "developer/webhooks"
