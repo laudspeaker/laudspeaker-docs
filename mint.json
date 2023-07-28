@@ -55,14 +55,11 @@
     {
       "group": "Getting Started",
       "pages": [
+        "getting-started/building-your-first-user-onboarding-flow",
         "getting-started/get-started-as-growth-engineer",
         "getting-started/get-started-as-marketer",
         "getting-started/get-started-as-engineer",
-        "getting-started/setting-up-modals-and-tours",
-        "getting-started/setting-up-product-onboarding",
-        "getting-started/setting-up-email",
-        "getting-started/sending-a-test-event",
-        "getting-started/setting-up-sms"
+        "getting-started/setting-up-email"
       ]
     },
     {
@@ -111,11 +108,7 @@
       "pages": [
         "tutorials/guide-to-triggered-automated-email",
         "tutorials/guide-to-triggering-in-product-modals",
-        "tutorials/journey",
-        "tutorials/onboarding",
         "tutorials/one-offs",
-        "tutorials/reengagement",
-        "tutorials/multiple-channels",
         "tutorials/personalization"
       ]
     },
