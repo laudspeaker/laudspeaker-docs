@@ -104,18 +104,12 @@
     {
       "group": "Tutorials",
       "pages": [
-        "tutorials/guide-to-triggered-automated-email",
-        "tutorials/guide-to-triggering-in-product-modals",
         "tutorials/one-offs",
-        "tutorials/personalization"
       ]
     },
     {
       "group": "Integrations",
       "pages": [
-        "integrate/integrating-posthog-events",
-        "integrate/using-posthog-events-in-laudspeaker",
-        "integrate/import-postHog-users",
         "integrate/integrating-custom-events",
         {
           "group": "Messaging Channels",
