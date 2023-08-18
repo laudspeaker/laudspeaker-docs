@@ -55,10 +55,8 @@
     {
       "group": "Getting Started",
       "pages": [
-        "getting-started/building-your-first-user-onboarding-flow",
+        "getting-started/setting-up-first-journey-with-the-react-sdk",
         "getting-started/get-started-as-growth-engineer",
-        "getting-started/get-started-as-marketer",
-        "getting-started/get-started-as-engineer",
         "getting-started/setting-up-email"
       ]
     },
