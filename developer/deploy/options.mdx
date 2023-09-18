@@ -5,76 +5,39 @@ description:
   render."
 ---
 
-### Prerequisites[](#prerequisites "Direct link to heading")
+### Laudspeaker Cloud
+We recommend you use Laudspeaker cloud, you can see a simple example in this tutorial setting-up-first-journey-with-the-react-sdk 
 
-There are a few prerequisites
+You can also self host by deploying with docker
 
-- Slack app
-- Mailgun Account
-- Render Account
+### Docker
+Run services:
 
-Even though you do not need to use our slack integration or use mailgun as the
-email sender, right now we require you to have these accounts to self deploy.
-Setting up a slack app is easy and free
-[here](https://api.slack.com/start/building).
+- `docker-compose up` or `docker compose up` depending on your version of docker
 
-Setting up the Prerequisites shouldn't take more than 5 - 10 mins
+Instantiate Mongo:
 
-## Steps[](#steps "Direct link to heading")
+- `mongosh --eval "rs.initiate()"`
 
-1. Create a render account. They may ask for billing information but your usage
-   of Laudspeaker is unlikely to go past the free usage limits. Then in the
-   render dashboard, click on environment groups, then create environment group
-   with name "laudspeaker" (no capitals). Add the env vars below and shown in
-   the screenshot:
+Run backend and front end:
 
-- MAGIC_EMAIL_DOMAIN
-- MAGIC_EMAIL_KEY
-- MAILGUN_API_KEY
-- MAILGUN_DOMAIN
-- MAILGUN_TEST_DOMAIN
-- SLACK_CLIENT_ID
-- SLACK_CLIENT_SECRET
-- SLACK_SIGNING_SECRET
+- `npm install`
+- `npm run start`
 
-MAGIC_EMAIL_DOMAIN, MAILGUN_DOMAIN, and MAILGUN_TEST_DOMAIN can all be the same
-if you wish. All other values are easily found from the prerequisites
+To stop running system services (Linux):
 
-![1a](/images/guides/deploy/1a-15170264bbc61d0da422aa9b4a50d174.png)
+- Postgres: `sudo systemctl stop postgresql.service`
+- Redis: `/etc/init.d/redis-server stop`
+- Mongo: `sudo systemctl stop mongod`
 
-1. In the Laudpeaker reository, click on the Deploy to Render button, see
-   screenshot
+To remove compose containers:
 
-![1b](/images/guides/deploy/1b-81c2b16d156737298509a5c146edf65c.png)
+- `docker-compose down --volumes`
 
-1. This will take you to the render deployment page. Give your deployment a name
-   and select the "production" branch. Then click "apply". See screenshot
+Add a `.env` file to both `packages/server` and `packages/client`.
 
-![1c](/images/guides/deploy/1c-8bc372026369a89c96789f3cce76e21d.png)
+We have provided examples which you can use:
 
-1. Click on the dashboard tab and wait for the laudspeaker mongo service to
-   finish deploying successfully. See screenshot for a finished mongo deploy.
+`mv env-server-example packages/server/.env` and `mv env-client-example packages/client/.env`
 
-![1d](/images/guides/deploy/1d-aa51ff9007aa25abf81831c2c7515874.png)
-
-1. Click on the mongo service, and navigate to the shell tab in the side panel.
-   Wait for an active shell to appear. See screenshot.
-
-![1e](/images/guides/deploy/1e-01a3d98160f0d08c4a477dc7716e48f1.png)
-
-1. Run the command `mongosh --eval "rs.initiate()"` in the shell. The output
-   should look as shown in the screenshot.
-
-![output](/images/guides/deploy/output-64ee5b6bd66f547c076e21a4890a941e.png)
-
-1. Once the laudspeaker web service is successfully deployed on the dashboard,
-   visit the render url to see the deployed instance of laudspeaker.
-
-![1f](/images/guides/deploy/1g-43acb4f765333ba2ae47832d54dbf55d.png)
-
-![1i](/images/guides/deploy/1i-d2002b756df99e27e875fdbdd56d31e2.png)
-
-1. Go ahead and play around - you don't need to verify your email, everything
-   should still work!
-2. When you are done playing around you can suspend the services on render to
-   make sure you are not charged!
+Make sure you fill in the fields in the env files before running.
