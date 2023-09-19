@@ -61,6 +61,12 @@
       ]
     },
     {
+      "group": "Examples",
+      "pages": [
+        "examples/side-checklist"
+      ]
+    },
+    {
       "group": "Product Manual",
       "pages": [
         "product-manual/glossary",
