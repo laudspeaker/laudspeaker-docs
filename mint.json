@@ -55,15 +55,35 @@
     {
       "group": "Getting Started",
       "pages": [
-        "getting-started/setting-up-first-journey-with-the-react-sdk",
-        "getting-started/get-started-as-growth-engineer",
-        "getting-started/setting-up-email"
+        {
+          "group": "Product and User Onboarding",
+          "pages": [
+            "getting-started/setting-up-first-journey-with-the-react-sdk"
+          ]
+        },
+        {
+          "group": "Customer Engagement",
+          "pages": [
+            "getting-started/setting-up-first-journey-with-the-react-sdk"
+          ]
+        }      
       ]
     },
     {
       "group": "Examples",
       "pages": [
-        "examples/side-checklist"
+        {
+          "group": "Product and User Onboarding",
+          "pages": [
+            "examples/side-checklist"
+          ]
+        },
+        {
+          "group": "Customer Engagement",
+          "pages": [
+            "tutorials/one-offs"
+          ]
+        }
       ]
     },
     {
@@ -71,45 +91,83 @@
       "pages": [
         "product-manual/glossary",
         {
-          "group": "Journey Builder",
+          "group": "Product and User Onboarding",
           "pages": [
-            "product-manual/journey-builder/overview",
-            "product-manual/journey-builder/steps-and-messages",
-            "product-manual/journey-builder/triggers",
-            "product-manual/journey-builder/branching",
-            "product-manual/journey-builder/loops",
-            "product-manual/journey-builder/start-and-exit-steps",
-            "product-manual/journey-builder/starting-a-journey",
-            "product-manual/journey-builder/swapping-nodes",
-            "product-manual/journey-builder/monitoring-a-live-journey"
+            {
+              "group": "Journey Builder",
+              "pages": [
+                "product-manual/journey-builder/overview",
+                "product-manual/journey-builder/steps-and-messages",
+                "product-manual/journey-builder/triggers",
+                "product-manual/journey-builder/branching",
+                "product-manual/journey-builder/loops",
+                "product-manual/journey-builder/start-and-exit-steps",
+                "product-manual/journey-builder/starting-a-journey",
+                "product-manual/journey-builder/swapping-nodes",
+                "product-manual/journey-builder/monitoring-a-live-journey"
+              ]
+            },
+            "product-manual/journey-builder",
+            "product-manual/template-builder",
+            "product-manual/people-and-profiles",
+            "product-manual/segments",
+            {
+              "group": "Channels",
+              "pages": [
+                "product-manual/channels/email-message",
+                "product-manual/channels/sms-message",
+                "product-manual/channels/in-app-message",
+                "product-manual/channels/push-message",
+                "product-manual/channels/custom-modals",
+                "product-manual/channels/webhooks"
+              ]
+            },
+            "product-manual/analyzing-results",
+            "product-manual/data-management",
+            "product-manual/event-integrations",
+            "product-manual/configurations-and-setings",
+            "product-manual/a-b-tests"
           ]
         },
-        "product-manual/journey-builder",
-        "product-manual/template-builder",
-        "product-manual/people-and-profiles",
-        "product-manual/segments",
         {
-          "group": "Channels",
+          "group": "Customer Engagement",
           "pages": [
-            "product-manual/channels/email-message",
-            "product-manual/channels/sms-message",
-            "product-manual/channels/in-app-message",
-            "product-manual/channels/push-message",
-            "product-manual/channels/custom-modals",
-            "product-manual/channels/webhooks"
+            {
+              "group": "Journey Builder",
+              "pages": [
+                "product-manual/journey-builder/overview",
+                "product-manual/journey-builder/steps-and-messages",
+                "product-manual/journey-builder/triggers",
+                "product-manual/journey-builder/branching",
+                "product-manual/journey-builder/loops",
+                "product-manual/journey-builder/start-and-exit-steps",
+                "product-manual/journey-builder/starting-a-journey",
+                "product-manual/journey-builder/swapping-nodes",
+                "product-manual/journey-builder/monitoring-a-live-journey"
+              ]
+            },
+            "product-manual/journey-builder",
+            "product-manual/template-builder",
+            "product-manual/people-and-profiles",
+            "product-manual/segments",
+            {
+              "group": "Channels",
+              "pages": [
+                "product-manual/channels/email-message",
+                "product-manual/channels/sms-message",
+                "product-manual/channels/in-app-message",
+                "product-manual/channels/push-message",
+                "product-manual/channels/custom-modals",
+                "product-manual/channels/webhooks"
+              ]
+            },
+            "product-manual/analyzing-results",
+            "product-manual/data-management",
+            "product-manual/event-integrations",
+            "product-manual/configurations-and-setings",
+            "product-manual/a-b-tests"
           ]
-        },
-        "product-manual/analyzing-results",
-        "product-manual/data-management",
-        "product-manual/event-integrations",
-        "product-manual/configurations-and-setings",
-        "product-manual/a-b-tests"
-      ]
-    },
-    {
-      "group": "Tutorials",
-      "pages": [
-        "tutorials/one-offs"
+        }
       ]
     },
     {
