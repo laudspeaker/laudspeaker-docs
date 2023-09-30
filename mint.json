@@ -64,7 +64,7 @@
         {
           "group": "Customer Engagement",
           "pages": [
-            "getting-started/setting-up-first-journey-with-the-react-sdk"
+            "getting-started/setting-up-example-engagement-app"
           ]
         }      
       ]
