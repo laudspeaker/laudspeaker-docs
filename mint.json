@@ -66,7 +66,7 @@
           "pages": [
             "getting-started/setting-up-example-engagement-app"
           ]
-        }      
+        }
       ]
     },
     {
@@ -218,10 +218,39 @@
           ]
         },
         {
-          "group": "Api",
+          "group": "Setup",
           "pages": [
-            "developer/api/events",
-            "developer/api/upsert"
+            "developer/setup/generating-api-keys",
+            "developer/setup/user-identification"
+          ]
+        },
+        {
+          "group": "API Reference",
+          "pages": [
+            {
+              "group": "Events",
+              "pages": [
+                "developer/api/events/send-event"
+              ]
+            },
+            {
+              "group": "Users",
+              "pages": [
+                "developer/api/users/upsert"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "SDKs",
+          "pages": [
+            "developer/sdks/android",
+            "developer/sdks/angular",
+            "developer/sdks/commonjs",
+            "developer/sdks/ios",
+            "developer/sdks/react-native",
+            "developer/sdks/react",
+            "developer/sdks/vue"
           ]
         },
         "developer/contributing-to-laudspeaker",
