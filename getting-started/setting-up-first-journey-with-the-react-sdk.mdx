@@ -1,10 +1,56 @@
 ---
-title: "Setting up your first journey with the react sdk"
+title: "Use Laudspeaker with our React.js SDK"
 description:
-  "Running a sample react application with our sdk and a journey."
+  "Learn how to create a Laudspeaker journey, create a sample component, and display and modify the component within a React app."
 ---
 
-This tutorial will show with a very simple application, how to use the react sdk, how to create and connect a journey, and how a react component connects to the laudspeaker platform. 
+<Info>This tutorial assumes you have the `node` and `npm` command line utilities installed. See the [Node.js installation page](https://nodejs.org/en) for more information</Info>
+
+<Steps>
+  <Step title="Set up a component template">
+Start by creating a new component template in the Laudspeaker dashboard: Navigate to the [Component Templates screen](https://app.laudspeaker.com/tracker-template) and click on Create Component Template in the upper right hand corner, then select a name for your template. We'll call our template _Favorite Letters_. Then click Create.
+<br/>
+Now,let's add some fields and events to our template. Click edit in the top right corner, then add a field called `my-favorite-letter` with type String and default value 'a', and an event called `click`, and save the template.
+  </Step>
+    <Step title="Set up a journey">
+    Now that we have a template for our component, it's time to create the journey. Navigate to the [Journey Builder screen](https://app.laudspeaker.com/flow) and click on Create Journey in the upper right hand corner, then select a name for your journey. We'll call ours Letters. Save the template and you should be redirected to the journey builder page for the journey.
+    <br/>
+    Our journey will have six steps:
+1. [Start Step](https://app.laudspeaker.com): This step is created by default and is the entry point for a customer in a journey
+2. [Custom Component](https://app.laudspeaker.com): Drag a Custom Componenet step from the left hand menu into the journey builder canvas, into the outline directly below the start step. When the sidebar menu pops up, select the `Favorite Letters` template from the dropdown, and click save.
+3. [Wait Until](https://app.laudspeaker.com): Now, drag a Wait Until step from the left hand menu into the journey builder canvas, into the outline directly below the Custom Componenet step. When the sidebar menu pops up, select `Tracker` in the first Branch 1 Event dropdown menu. There should only be one option in the TrackerId menu; select it. Finally, select the `click` event from the Event Name dropdown. Click the save button immediately below the dropdown menus to save the branch, then click the Save button at the bottom of the sidebar menu to save the wait until step.
+4. Custom Component: Again, drag a Custom Componenet step from the left hand menu into the journey builder canvas, into the outline directly below the wait until step. When the sidebar menu pops up, select the existing tracker option, and change my-favorite-letter to `b`, and click Save at the bottom of the sidebar menu.
+5. Wait Until: Drag another Wait Until onto the canvas, and configure it identically to the first wait until that you created.
+6. [Jump To](https://app.laudspeaker.com): Finally, 
+
+  </Step>
+  <Step title="Create the React App">
+Now we are going to create a React app using a [Vite](https://vitejs.dev/guide/) template. In the terminal, navigate to your desired workspace and create a new app using `npm`:
+``` shell-session
+$ npm create vite@latest my-favorite-letter -- --template react
+```
+  </Step>
+  <Step title="Install the Laudspeaker React SDK">
+    The easiest way to get started is to use the [`@laudspeaker/react`](https://www.npmjs.com/package/@laudspeaker/react) client library, which provides a convenient interface for working with Laudspeaker from a React app. Naviagte to the newly created app and install the library:
+    ``` shell-session
+$ cd my-favorite-letter && npm install --save @laudspeaker/react
+```
+  </Step>
+    <Step title="Add the sample component to your app">
+    These are instructions or content that only pertain to the third step.
+  </Step>
+      <Step title="Start the journey">
+    These are instructions or content that only pertain to the third step.
+  </Step>
+</Steps>
+
+
+### 1) Set up a Laudspeaker journey and sample component template
+
+Start by creating a new component template in the Laudspeaker dashboard: Navigate to the [Component Templates screen](https://app.laudspeaker.com/tracker-template) and click on Create Component Template in the upper right hand corner, then select a name for your template. We'll call our template _Favorite Letters_. Then click Create
+
+<br/>
+
 
 ### Setting up the app
 

@@ -10,17 +10,9 @@
     "light": "#8084d9",
     "dark": "#fc8131"
   },
-  "analytics": {
-    "posthog": {
-      "apiKey": "RxdBl8vjdTwic7xTzoKTdbmeSC1PCzV6sw-x-FKSB-k"
-    }
-  },
   "topbarCtaButton": {
     "type": "github",
     "url": "https://github.com/laudspeaker/laudspeaker"
-  },
-  "api": {
-    "hidePlayground": true
   },
   "topbarLinks": [
     {
