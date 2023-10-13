@@ -20,6 +20,20 @@
       "url": "https://app.laudspeaker.com/signup"
     }
   ],
+  "tabs": [
+    {
+      "name": "Onboarding",
+      "url": "onboarding"
+    },
+    {
+      "name": "Product Manual",
+      "url": "product-manual"
+    },
+    {
+      "name": "Developer",
+      "url": "developer"
+    }
+  ],  
   "anchors": [
     {
       "name": "GitHub",
