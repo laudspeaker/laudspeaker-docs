@@ -20,20 +20,19 @@
       "url": "https://app.laudspeaker.com/signup"
     }
   ],
-  "tabs": [
+  "tabs": [    
     {
-      "name": "Onboarding",
+      "name": "User Onboarding Suite",
       "url": "onboarding"
-    },
-    {
-      "name": "Product Manual",
-      "url": "product-manual"
     },
     {
       "name": "Developer",
       "url": "developer"
     }
-  ],  
+  ],
+  "primaryTab": {
+    "name": "Customer Engagement Suite"
+  },
   "anchors": [
     {
       "name": "GitHub",
@@ -61,35 +60,13 @@
     {
       "group": "Getting Started",
       "pages": [
-        {
-          "group": "Product and User Onboarding",
-          "pages": [
-            "getting-started/setting-up-first-journey-with-the-react-sdk"
-          ]
-        },
-        {
-          "group": "Customer Engagement",
-          "pages": [
-            "getting-started/setting-up-example-engagement-app"
-          ]
-        }
+        "getting-started/setting-up-example-engagement-app"
       ]
     },
     {
       "group": "Examples",
       "pages": [
-        {
-          "group": "Product and User Onboarding",
-          "pages": [
-            "examples/side-checklist"
-          ]
-        },
-        {
-          "group": "Customer Engagement",
-          "pages": [
-            "tutorials/one-offs"
-          ]
-        }
+        "tutorials/one-offs"
       ]
     },
     {
@@ -97,62 +74,19 @@
       "pages": [
         "product-manual/glossary",
         {
-          "group": "Product and User Onboarding",
+          "group": "Journey Builder",
           "pages": [
-            {
-              "group": "Journey Builder",
-              "pages": [
-                "product-manual/journey-builder/overview",
-                "product-manual/journey-builder/steps-and-messages",
-                "product-manual/journey-builder/triggers",
-                "product-manual/journey-builder/branching",
-                "product-manual/journey-builder/loops",
-                "product-manual/journey-builder/start-and-exit-steps",
-                "product-manual/journey-builder/starting-a-journey",
-                "product-manual/journey-builder/swapping-nodes",
-                "product-manual/journey-builder/monitoring-a-live-journey"
-              ]
-            },
-            "product-manual/journey-builder",
-            "product-manual/template-builder",
-            "product-manual/people-and-profiles",
-            "product-manual/segments",
-            {
-              "group": "Channels",
-              "pages": [
-                "product-manual/channels/email-message",
-                "product-manual/channels/sms-message",
-                "product-manual/channels/in-app-message",
-                "product-manual/channels/push-message",
-                "product-manual/channels/custom-modals",
-                "product-manual/channels/webhooks"
-              ]
-            },
-            "product-manual/analyzing-results",
-            "product-manual/data-management",
-            "product-manual/event-integrations",
-            "product-manual/configurations-and-setings",
-            "product-manual/a-b-tests"
+            "product-manual/journey-builder/overview",
+            "product-manual/journey-builder/steps-and-messages",
+            "product-manual/journey-builder/triggers",
+            "product-manual/journey-builder/branching",
+            "product-manual/journey-builder/loops",
+            "product-manual/journey-builder/start-and-exit-steps",
+            "product-manual/journey-builder/starting-a-journey",
+            "product-manual/journey-builder/swapping-nodes",
+            "product-manual/journey-builder/monitoring-a-live-journey"
           ]
         },
-        {
-          "group": "Customer Engagement",
-          "pages": [
-            {
-              "group": "Journey Builder",
-              "pages": [
-                "product-manual/journey-builder/overview",
-                "product-manual/journey-builder/steps-and-messages",
-                "product-manual/journey-builder/triggers",
-                "product-manual/journey-builder/branching",
-                "product-manual/journey-builder/loops",
-                "product-manual/journey-builder/start-and-exit-steps",
-                "product-manual/journey-builder/starting-a-journey",
-                "product-manual/journey-builder/swapping-nodes",
-                "product-manual/journey-builder/monitoring-a-live-journey"
-              ]
-            },
-            "product-manual/journey-builder",
             "product-manual/template-builder",
             "product-manual/people-and-profiles",
             "product-manual/segments",
@@ -172,8 +106,6 @@
             "product-manual/event-integrations",
             "product-manual/configurations-and-setings",
             "product-manual/a-b-tests"
-          ]
-        }
       ]
     },
     {
@@ -210,6 +142,35 @@
               ]
             },
             "integrate/messaging-channels/slack"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Onboarding",
+      "pages": [
+        {
+          "group": "Overview",
+          "pages": [
+            "getting-started/setting-up-first-journey-with-the-react-sdk"
+          ]
+        },
+        {
+          "group": "Getting Started",
+          "pages": [
+            "getting-started/setting-up-first-journey-with-the-react-sdk"
+          ]
+        },
+        {
+          "group": "Examples",
+          "pages": [
+            "examples/side-checklist"
+          ]
+        },
+        {
+          "group": "Product Manual",
+          "pages": [
+            "getting-started/setting-up-first-journey-with-the-react-sdk"
           ]
         }
       ]
