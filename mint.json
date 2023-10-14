@@ -147,30 +147,30 @@
       ]
     },
     {
-      "group": "Onboarding",
+      "group": "User Onboarding Suite",
       "pages": [
         {
           "group": "Overview",
           "pages": [
-            "getting-started/setting-up-first-journey-with-the-react-sdk"
+            "onboarding/overview/setting-up-first-journey-with-the-react-sdk"
           ]
         },
         {
           "group": "Getting Started",
           "pages": [
-            "getting-started/setting-up-first-journey-with-the-react-sdk"
+            "onboarding/overview/setting-up-first-journey-with-the-react-sdk"
           ]
         },
         {
           "group": "Examples",
           "pages": [
-            "examples/side-checklist"
+            "onboarding/examples/setting-up-first-journey-with-the-react-sdk"
           ]
         },
         {
           "group": "Product Manual",
           "pages": [
-            "getting-started/setting-up-first-journey-with-the-react-sdk"
+            "onboarding/product-manual/setting-up-first-journey-with-the-react-sdk"
           ]
         }
       ]
