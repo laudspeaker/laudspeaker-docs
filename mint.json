@@ -86,7 +86,7 @@
             "product-manual/people-and-profiles",
             "product-manual/segments",
             {
-              "group": "Channels",
+              "group": "Message Channels",
               "icon": "comments",
               "pages": [
                 "product-manual/channels/setting-up",
