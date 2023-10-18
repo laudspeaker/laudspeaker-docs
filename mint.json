@@ -26,7 +26,7 @@
       "url": "onboarding"
     },
     {
-      "name": "Developer",
+      "name": "Developer Guide",
       "url": "developer"
     }
   ],
@@ -93,11 +93,11 @@
             {
               "group": "Channels",
               "pages": [
+                "product-manual/channels/setting-up",
                 "product-manual/channels/email-message",
                 "product-manual/channels/sms-message",
                 "product-manual/channels/in-app-message",
                 "product-manual/channels/push-message",
-                "product-manual/channels/custom-modals",
                 "product-manual/channels/webhooks"
               ]
             },

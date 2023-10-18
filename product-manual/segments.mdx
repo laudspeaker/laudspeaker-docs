@@ -3,45 +3,17 @@ title: "Segments"
 description: "Using Segments in Laudspeaker"
 ---
 ### Introduction
-Segments are named lists of your users, that you can re-use and refer to multiple times in different parts of Laudspeaker. For example you could save a segment, "Users in Atlanta", and then whenever you want a journey to target users in Atlanta, you can simply reuse the "Users in Atlanta" segment instead of creating custom filters for each journey. Segments are generally useful for defining users you may want to target in specific campaigns and journeys.
 
-You can include as few or as many people as you want in a segment, and Laudspeaker supports two main types of segments: Manual, Automatic. 
+You can create segments in the 2nd step of the journey builder and will soon also be able to create them in a segments tab under audience
 
-### Types of Segments
+In the journey builder the segments tab is the 2nd step:
+![Example Flow](/images/guides/product-manual/segments_crop.png)
 
-#### Manual Segments
-Manual Segments are fixed lists of people that are defined by a Laudspeaker user explicitly. For example you could create a manual segment through a csv import, or a database import. Once created the segment's membership does not change unless you explicitly remove users from the segment, or add them.
-![Example Flow](/images/guides/product-manual/manual_seg.png)
+If you wish to include all users, you can select all users:
+![Example Flow](/images/guides/product-manual/all_customers.png)
 
-#### Automatic Segments
-Automatic Segments are lists of people that are defined by filters on sets of attributes, or actions they have taken. They are dynamic, and people join or leave the segments as they match or stop matching the filters. For example in the following segment:
-![Example Flow](/images/guides/product-manual/automaticsegment.png)
-
-### Creating a Segment
-
-#### Manual Segments
-To create a manual segment, simply select the manual option in the dropdown.
-![Example Flow](/images/guides/product-manual/manual_drop_down.png)
-
-Then choose how you would like to specify the list. Right now we offer csv imports.
-![Example Flow](/images/guides/product-manual/manual_upload.png)
-
-#### Automatic Segments
-To create an Automatic Segment, select the automatic drop down, and then specify the filter conditions
-
-### Editing a Segment
-
-To edit a manual segment click on "Edit Segment" button, you will then be able to add, or remove people from the list.
-![Example Flow](/images/guides/product-manual/update_manual_segment.png)
-
-To edit an automatic segment, you simply click on the segment, and then change conditions and click save
+To create a segment select "When customer meets conditions"
+![Example Flow](/images/guides/product-manual/segment.png)
 
 ### Using a Segment in a Journey
-You can use segment in a journey by selecting the member of operator like this:
-
-![Example Flow](/images/guides/product-manual/memberof.png)
-
-then a list of your segments will show and you can select which segment you want to use. If you would like to perform further filtering on the segment you can do that as well in this part of the journey builder.
-
-### Advanced
-Whats the difference between an automatic segment and filters? You can think of an automatic segment as a saved set of filters!
+Once you are happy with the segment definition, you can review the segment in the final step on the journey builder and before setting it live
