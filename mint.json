@@ -64,17 +64,12 @@
       ]
     },
     {
-      "group": "Examples",
-      "pages": [
-        "tutorials/one-offs"
-      ]
-    },
-    {
       "group": "Product Manual",
       "pages": [
         "product-manual/glossary",
         {
           "group": "Journey Builder",
+          "icon": "bezier-curve",
           "pages": [
             "product-manual/journey-builder/overview",
             "product-manual/journey-builder/steps-and-messages",
@@ -92,6 +87,7 @@
             "product-manual/segments",
             {
               "group": "Channels",
+              "icon": "comments",
               "pages": [
                 "product-manual/channels/setting-up",
                 "product-manual/channels/email-message",
@@ -146,28 +142,38 @@
       ]
     },
     {
+      "group": "Examples",
+      "pages": [
+        "tutorials/one-offs"
+      ]
+    },
+    {
       "group": "User Onboarding Suite",
       "pages": [
         {
           "group": "Overview",
+          "icon":"house",
           "pages": [
             "onboarding/overview/setting-up-first-journey-with-the-react-sdk"
           ]
         },
         {
           "group": "Getting Started",
+          "icon":"play",
           "pages": [
             "onboarding/overview/setting-up-first-journey-with-the-react-sdk"
           ]
         },
         {
           "group": "Examples",
+          "icon":"file-code",
           "pages": [
             "onboarding/examples/setting-up-first-journey-with-the-react-sdk"
           ]
         },
         {
           "group": "Product Manual",
+          "icon":"book-open",
           "pages": [
             "onboarding/product-manual/setting-up-first-journey-with-the-react-sdk"
           ]
