@@ -198,6 +198,7 @@
         },
         {
           "group": "API Reference",
+          "icon": "code",
           "pages": [
             {
               "group": "Events",
