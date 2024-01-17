@@ -7,7 +7,7 @@ api: 'POST https://api.laudspeaker.com/customers/upsert'
 
 The `upsert` endpoint is designed to allow Luadspeaker users with the programmatic ability to add new customers or update existing customers.
 
-The `upsert` endpoint looks up a customer document using the supplied `primary-key`, and then adds or changes customer attribute values specified in the `properties` `json` object in the request body.
+The `upsert` endpoint looks up a customer document using the supplied `primary_key`, and then adds or changes customer attribute values specified in the `properties` `json` object in the request body.
 
 <Warning>In order to use this endpoint, a primary key must have first been selected via the [Laudspeaker UI](https://app.laudspeaker.com/).</Warning>
 
@@ -16,7 +16,7 @@ The `upsert` endpoint looks up a customer document using the supplied `primary-k
   Header for authenticating with Laudspeaker. Starts with `Api-Key` followed by the API key, for example `Api-Key M4jxXt6diYz1Dds1YmhHe93KGPAUi24PlXgaiRXi`.
 </ParamField>
 ### Body
-<ParamField body="primary-key" type="string" required placeholder="email">
+<ParamField body="primary_key" type="string" required placeholder="email">
   This field specifies the primary key value used to uniquely identify users. 
 </ParamField>
 <ParamField body="properties" type="json" optional>
@@ -52,7 +52,7 @@ curl --request POST \
   --header 'Authorization: Api-Key M4jxXt6diYz1Dds1YmhHe93KGPAUi24PlXgaiRXi' \
   --header 'Content-Type: application/json' \
   --data '{
-  "primary-key": "johnsmith@example.com"
+  "primary_key": "johnsmith@example.com"
 }'
 ```
 </CodeGroup>
@@ -67,7 +67,7 @@ curl --request POST \
   --header 'Authorization: Api-Key M4jxXt6diYz1Dds1YmhHe93KGPAUi24PlXgaiRXi' \
   --header 'Content-Type: application/json' \
   --data '{
-  "primary-key": "johnsmith@example.com",
+  "primary_key": "johnsmith@example.com",
   "properties": {
     "firstName": "John",
     "lastName": "Smith"
@@ -86,7 +86,7 @@ curl --request POST \
   --header 'Authorization: Api-Key M4jxXt6diYz1Dds1YmhHe93KGPAUi24PlXgaiRXi' \
   --header 'Content-Type: application/json' \
   --data '{
-  "primary-key": "johnsmith@example.com",
+  "primary_key": "johnsmith@example.com",
   "properties": {
     "firstName": "John",
     "lastName": null
