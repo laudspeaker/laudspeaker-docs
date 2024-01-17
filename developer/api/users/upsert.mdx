@@ -1,68 +1,100 @@
 ---
 title: "Upsert"
-description: "Adding or updating users programmatically via our api"
+description: "Adding or updating users programmatically via the Laudspeaker API"
 api: 'POST https://api.laudspeaker.com/customers/upsert'
 
 ---
 
-<ParamField query="correlationKey" type="string" required>
-  This field specifies which user property we use to uniquely identify users. Common choices here include, `user_id`, `email`, `phone` 
-</ParamField>
-<ParamField query="correlationValue" type="string" required>
-  This field is the value that corresponds to the correlationKey so if the correlationKey is email, then correlationValue could be abe@laudspeaker.com
-</ParamField>
-<ParamField query="keys and values" type="json" optional>
- You can add as many keys and properties as you want for the person here. 
-</ParamField>
+The `upsert` endpoint is designed to allow Luadspeaker users with the programmatic ability to add new customers or update existing customers.
 
+The `upsert` endpoint looks up a customer document using the supplied `primary-key`, and then adds or changes customer attribute values specified in the `properties` `json` object in the request body.
 
-### Endpoint
-
-| Method   | Description                                      |
-| -------- | ------------------------------------------------ |
-| `POST`   | https://api.laudspeaker.com/customers/upsert     |
-
+<Warning>In order to use this endpoint, a primary key must have first been selected via the [Laudspeaker UI](https://app.laudspeaker.com/).</Warning>
 
 ### Authentication
+<ParamField header="Authorization" type="string" required initialValue="Api-Key <LAUDSPEAKER_API_KEY>" placeholder="Api-Key <LAUDSPEAKER_API_KEY>">
+  Header for authenticating with Laudspeaker. Starts with `Api-Key` followed by the API key, for example `Api-Key M4jxXt6diYz1Dds1YmhHe93KGPAUi24PlXgaiRXi`.
+</ParamField>
+### Body
+<ParamField body="primary-key" type="string" required placeholder="email">
+  This field specifies the primary key value used to uniquely identify users. 
+</ParamField>
+<ParamField body="properties" type="json" optional>
+ This is where additional properties are added to the customer object. To delete a property, pass the key with value set to `null`.
+</ParamField>
 
-Authorization: Api-key [yourapikey]
-
-### Examples
-
-<CodeGroup>
-```cURL curl example
-curl --location 'https://api.laudspeaker.com/customers/upsert' \
---header 'Authorization: Api-Key <YOUR_API_KEY>' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "correlationKey": "email",
-    "correlationValue": "example@laudspeaker.com",
-    "name": "Abe"
-}'
-```
-```HTTP http
-POST /customers/upsert HTTP/1.1
-Host: api.laudspeaker.com
-Authorization: Api-Key [yourkeyhere]
-Content-Type: application/json
-Content-Length: 97
-
-{
-    "correlationKey":"email",
-    "correlationValue":"abe@laudspeaker.com",
-    "name": "Abe"
-}
-```
-
-</CodeGroup>
-
+### Response
 <ResponseExample>
-  ```json Example Response
-  "5095a177-0b0c-40c5-8a86-7c85a0118843"
+  ```json 200
+  {
+    "id":"65a70f3c373d50b91ea57438"
+  }
+  ```
+  ```json 400
+  {
+    "error":"Primary Key not selected"
+  }
   ```
 </ResponseExample>
 
-The response is the user id
+<ResponseField name="id" type="string" required="true">
+ The id of the customer object that was created or modified. 
+</ResponseField>
+
+### Examples
+
+#### Creating an empty customer document
+
+<CodeGroup>
+```cURL cURL
+curl --request POST \
+  --url https://api.laudspeaker.com/customers/upsert \
+  --header 'Authorization: Api-Key M4jxXt6diYz1Dds1YmhHe93KGPAUi24PlXgaiRXi' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "primary-key": "johnsmith@example.com"
+}'
+```
+</CodeGroup>
+
+
+#### Updating an existing customer document
+
+<CodeGroup>
+```cURL cURL
+curl --request POST \
+  --url https://api.laudspeaker.com/customers/upsert \
+  --header 'Authorization: Api-Key M4jxXt6diYz1Dds1YmhHe93KGPAUi24PlXgaiRXi' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "primary-key": "johnsmith@example.com",
+  "properties": {
+    "firstName": "John",
+    "lastName": "Smith"
+  }
+}'
+```
+</CodeGroup>
+
+
+#### Deleting a field from an existing customer document
+
+<CodeGroup>
+```cURL cURL
+curl --request POST \
+  --url https://api.laudspeaker.com/customers/upsert \
+  --header 'Authorization: Api-Key M4jxXt6diYz1Dds1YmhHe93KGPAUi24PlXgaiRXi' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "primary-key": "johnsmith@example.com",
+  "properties": {
+    "firstName": "John",
+    "lastName": null
+  }
+}'
+```
+</CodeGroup>
+
 
 
 
