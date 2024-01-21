@@ -220,7 +220,14 @@
             "developer/sdks/android",
             "developer/sdks/angular",
             "developer/sdks/commonjs",
-            "developer/sdks/ios",
+            {
+              "group": "iOS",
+              "pages": [
+                "developer/sdks/ios",
+                "developer/sdks/iOS/adding-standard-push",
+                "developer/sdks/iOS/adding-rich-push"
+              ]
+            },
             "developer/sdks/react-native",
             "developer/sdks/react",
             "developer/sdks/vue"
