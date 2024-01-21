@@ -1,38 +1,31 @@
 ---
-title: "Adding Rich Push Notification"
+title: "Adding Rich Push Notifications"
 description: "Send rich push notificaitons to your iOS app"
 ---
-Adding Rich Push Notifications 
 
-**
-warning 
+<Info> Rich push notifications are push notifications with more than just text. For example rich push notifications can include media (images, video, gifs) or more complex interactivity. To be able to send and receive rich push notifications, you need to create a notification service extension </Info>
 
-Rich push notifications are push notifications with more than just text. For example rich push notifications can include media (images, video, gifs) or more complex interactivity. To be able to send and receive rich push notifications , you need to create a notification service extension
-**
+### 1. Creating a service extension
 
-Step 1: Creating a service extension
+The first step is to add a service extension to your application. 
 
 File > New > Target in Xcode and select Notification Service Extension.
 
-[image]
+![service](/images/developer/sdks/service.png)
 
-Step 2: Setting up the notification service extension
+### 2. Setting up the notification service extension
 
-**
-warning 
+<Info> A notification service extension is its own binary that is bundled with your app. Make sure your notification service extension bundle identifier is based on your main app target bundle identifier. For example, if your main app is com.example.appWithLaudspeaker your notification service extension extension could be com.example.appWithLaudspeaker.NotificationExtension </Info>
 
-A notification service extension is its own binary that is bundled with your app. Make sure your notification service extension bundle identifier is based on your main app target bundle identifier. For example, if your main app is com.example.appWithLaudspeaker your notification service extension extension could be com.example.appWithLaudspeaker.NotificationExtension
-**
+![bundlename](/images/developer/sdks/bundlename.png)
 
 Set the Deployment Target of your Notification Service Extension to the minimum version accepted by Xcode
 
-[image]
+![minimum](/images/developer/sdks/minimum.png)
 
 When Xcode prompts you to activate the new scheme, answer Cancel to keep Xcode building and debugging your app instead of the extension:
 
-[image]
-
-Step 3: Integrating rich push notifications
+### 3. Integrating rich push notifications
 
 You can either use our package via the swift package manager or add manually
 
@@ -41,12 +34,11 @@ To add Manually:
 paste this code to into the NotificationServiceExtension file:
 
 
-
 ***
 code
 ***
 
-Step 4: Creating a rich notification and Testing
+### 4. Creating a rich notification and Testing
 
 To test, you will need a real device, and access to its firebase device token
 
