@@ -224,8 +224,8 @@
               "group": "iOS",
               "pages": [
                 "developer/sdks/ios",
-                "developer/sdks/iOS/adding-standard-push",
-                "developer/sdks/iOS/adding-rich-push"
+                "developer/sdks/ios/adding-standard-push",
+                "developer/sdks/ios/adding-rich-push"
               ]
             },
             "developer/sdks/react-native",
