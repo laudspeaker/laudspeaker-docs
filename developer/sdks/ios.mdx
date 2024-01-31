@@ -4,6 +4,11 @@ description: "Add Laudspeaker to your iOS app"
 
 ---
 
+<Info> Laudspeaker currently requires users to also use firebase, you will need to install firebase seperately, import the library in your project and add their required app delegate methods (example here: https://firebase.google.com/docs/cloud-messaging/ios/receive).  </Info>
+
+
+For specific tutorials check out the following pages:
+
 <CardGroup>
 <Card title="Adding Standard Push Notifications" icon="readme" href="/developer/sdks/ios/adding-standard-push">
   Start Here to send push notifications to your iphone app!
@@ -17,5 +22,21 @@ description: "Add Laudspeaker to your iOS app"
   Track default, message and custom events to better understand your app!
 </Card>
 </CardGroup>
+
+### Installation
+
+To use Laudspeaker in your app you should add our package as a dependency. 
+
+You can do so using the swift package manager by searching for `laudspeaker-swift-sdk`:
+
+![search](/images/developer/sdks/search.png)
+
+And then adding the package:
+
+![package_manager](/images/developer/sdks/package_manager.png)
+
+Or manually from our repo available here: https://github.com/laudspeaker/laudspeaker-swift-sdk
+
+This package includes our NotificationExtensionService as well which you may use if you want rich push too.
 
 
