@@ -27,19 +27,27 @@ When Xcode prompts you to activate the new scheme, answer Cancel to keep Xcode b
 
 ### 3. Integrating rich push notifications
 
-You can either use our package via the swift package manager or add manually
-
 To add Manually:
 
 paste this code to into the NotificationServiceExtension file:
 
+```
+import LaudspeakerNotificationService
 
-***
-code
-***
+class NotificationService: LaudspeakerNotificationService {}
+```
 
 ### 4. Creating a rich notification and Testing
 
 To test, you will need a real device, and access to its firebase device token
 
-Then go to 
+Then go to the template page and create a push notification  
+
+![template](/images/developer/sdks/template.png)
+
+Be sure to add an image
+
+![template_image](/images/developer/sdks/template_image.png)
+
+After you have designed a notification, select test, and find the test person with the aforementioned device token, and hit send
+
