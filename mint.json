@@ -225,7 +225,8 @@
               "pages": [
                 "developer/sdks/ios",
                 "developer/sdks/ios/adding-standard-push",
-                "developer/sdks/ios/adding-rich-push"
+                "developer/sdks/ios/adding-rich-push",
+                "developer/sdks/ios/tracking-events"
               ]
             },
             "developer/sdks/react-native",
