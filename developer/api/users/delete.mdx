@@ -1,0 +1,61 @@
+---
+title: "Delete"
+description: "Deleting customers programmatically via the Laudspeaker API"
+api: 'POST https://api.laudspeaker.com/customers/delete'
+
+---
+
+The `delete` endpoint is designed to allow Luadspeaker users with the programmatic ability to delete existing customers.
+
+The `delete` endpoint looks up and deletes a customer document using the supplied `primary_key`, returning the deleted customer information. If the customer does not exist, an error is returned.
+
+<Warning>In order to use this endpoint, a primary key must have first been selected via the [Laudspeaker UI](https://app.laudspeaker.com/).</Warning>
+
+### Authentication
+<ParamField header="Authorization" type="string" required initialValue="Api-Key <LAUDSPEAKER_API_KEY>" placeholder="Api-Key <LAUDSPEAKER_API_KEY>">
+  Header for authenticating with Laudspeaker. Starts with `Api-Key` followed by the API key, for example `Api-Key M4jxXt6diYz1Dds1YmhHe93KGPAUi24PlXgaiRXi`.
+</ParamField>
+### Body
+<ParamField body="primary_key" type="string" required placeholder="email">
+  This field specifies the primary key value used to uniquely identify users. 
+</ParamField>
+
+### Response
+<ResponseExample>
+  ```json 200
+  {
+    "primary_key":"test@example.com"
+  }
+  ```
+  ```json 400
+  {
+    "error":"Primary Key not selected"
+  }
+  ```
+  ```json 404
+  {
+    "error":"Customer with specified primary key does not exist"
+  }
+  ```
+</ResponseExample>
+
+<ResponseField name="primary_key" type="string" required="true">
+ The primary key of the customer object that was deleted. 
+</ResponseField>
+
+### Example
+
+#### Deleting a customer
+
+<CodeGroup>
+```cURL cURL
+curl --request POST \
+  --url https://api.laudspeaker.com/customers/delete \
+  --header 'Authorization: Api-Key M4jxXt6diYz1Dds1YmhHe93KGPAUi24PlXgaiRXi' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "primary_key": "test@example.com"
+}'
+```
+</CodeGroup>
+
