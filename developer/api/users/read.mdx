@@ -1,13 +1,13 @@
 ---
-title: "Delete"
-description: "Deleting customers programmatically via the Laudspeaker API"
-api: 'POST https://api.laudspeaker.com/customers/delete'
+title: "Read"
+description: "Reading customers programmatically via the Laudspeaker API"
+api: 'POST https://api.laudspeaker.com/customers/read'
 
 ---
 
-The `delete` endpoint is designed to allow Laudspeaker users the programmatic ability to delete existing customers.
+The `read` endpoint is designed to allow Laudspeaker users the programmatic ability to read existing customers.
 
-The `delete` endpoint looks up and deletes a customer document using the supplied `primary_key`, returning the deleted customer information. If the customer does not exist, an error is returned.
+The `read` endpoint looks up a customer document using the supplied `primary_key`, returning the customer's key/value pairs. If the customer does not exist, an error is returned.
 
 <Warning>In order to use this endpoint, a primary key must have first been selected via the [Laudspeaker UI](https://app.laudspeaker.com/).</Warning>
 
@@ -24,7 +24,10 @@ The `delete` endpoint looks up and deletes a customer document using the supplie
 <ResponseExample>
   ```json 200
   {
-    "primary_key":"test@example.com"
+    "email":"test@example.com",
+    "first_name":"John",
+    "last_name":"Doe",
+    "phone_number":"123-456-7890"
   }
   ```
   ```json 400
@@ -40,17 +43,17 @@ The `delete` endpoint looks up and deletes a customer document using the supplie
 </ResponseExample>
 
 <ResponseField name="primary_key" type="string" required="true">
- The primary key of the customer object that was deleted. 
+ The primary key of the customer object that was found. 
 </ResponseField>
 
 ### Example
 
-#### Deleting a customer
+#### Reading a customer
 
 <CodeGroup>
 ```cURL cURL
 curl --request POST \
-  --url https://api.laudspeaker.com/customers/delete \
+  --url https://api.laudspeaker.com/customers/read \
   --header 'Authorization: Api-Key M4jxXt6diYz1Dds1YmhHe93KGPAUi24PlXgaiRXi' \
   --header 'Content-Type: application/json' \
   --data '{

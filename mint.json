@@ -210,7 +210,8 @@
               "group": "Users",
               "pages": [
                 "developer/api/users/upsert",
-                "developer/api/users/delete"
+                "developer/api/users/delete",
+                "developer/api/users/read"
               ]
             }
           ]
