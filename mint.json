@@ -22,10 +22,6 @@
   ],
   "tabs": [    
     {
-      "name": "User Onboarding Suite",
-      "url": "onboarding"
-    },
-    {
       "name": "Developer Guide",
       "url": "developer"
     }
@@ -111,9 +107,14 @@
           "group": "Messaging Channels",
           "pages": [
             {
+              "group": "Push",
+              "pages": [
+                "integrate/messaging-channels/push/firebase"
+              ]
+            },
+            {
               "group": "Email",
               "pages": [
-                "integrate/messaging-channels/email/sandbox",
                 "integrate/messaging-channels/email/mailgun",
                 "integrate/messaging-channels/email/sendgrid",
                 "integrate/messaging-channels/email/smtp",
@@ -135,8 +136,7 @@
                 "integrate/messaging-channels/sms/wati",
                 "integrate/messaging-channels/sms/bandwidth"
               ]
-            },
-            "integrate/messaging-channels/slack"
+            }
           ]
         }
       ]
@@ -145,39 +145,6 @@
       "group": "Examples",
       "pages": [
         "tutorials/one-offs"
-      ]
-    },
-    {
-      "group": "User Onboarding Suite",
-      "pages": [
-        {
-          "group": "Overview",
-          "icon":"house",
-          "pages": [
-            "onboarding/overview/setting-up-first-journey-with-the-react-sdk"
-          ]
-        },
-        {
-          "group": "Getting Started",
-          "icon":"play",
-          "pages": [
-            "onboarding/overview/setting-up-first-journey-with-the-react-sdk"
-          ]
-        },
-        {
-          "group": "Examples",
-          "icon":"file-code",
-          "pages": [
-            "onboarding/examples/setting-up-first-journey-with-the-react-sdk"
-          ]
-        },
-        {
-          "group": "Product Manual",
-          "icon":"book-open",
-          "pages": [
-            "onboarding/product-manual/setting-up-first-journey-with-the-react-sdk"
-          ]
-        }
       ]
     },
     {
