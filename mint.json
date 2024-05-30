@@ -79,9 +79,15 @@
             "product-manual/journey-builder/monitoring-a-live-journey"
           ]
         },
+        {
+          "group": "Segment Builder",
+          "icon": "people-group",
+          "pages": [
+            "product-manual/segments"
+          ]
+        },
             "product-manual/template-builder",
             "product-manual/people-and-profiles",
-            "product-manual/segments",
             {
               "group": "Message Channels",
               "icon": "comments",
@@ -184,8 +190,6 @@
           "icon": "cube",
           "pages": [
             "developer/sdks/android",
-            "developer/sdks/angular",
-            "developer/sdks/commonjs",
             {
               "group": "iOS",
               "pages": [
@@ -195,6 +199,8 @@
                 "developer/sdks/ios/tracking-events"
               ]
             },
+            "developer/sdks/angular",
+            "developer/sdks/commonjs",
             "developer/sdks/react-native",
             "developer/sdks/react",
             "developer/sdks/vue"

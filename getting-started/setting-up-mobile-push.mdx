@@ -5,9 +5,49 @@ description:
 icon: "mobile"
 ---
 
-This tutorial will show with a very simple application, how to use the react sdk, how to trigger events, connect a journey, and send messages like emails, sms and push based on those events. 
+This tutorial will show with an end to end example how to trigger a mobile push campaign. It includes a very simple ios or android application, and shows how to use the laudspeaker mobile sdks, how to trigger events, connect a journey, and finally sends a push notification.
 
-### Setting up the app
+### Setting up firebase in Laudspeaker
+
+The first step in being able to send push notificaitons is setting up firebase in Laudspeaker. 
+
+You need to navigate to the settings page, select push
+
+![2](/images/guides/getting-started/push_options.png)
+
+Then you can select the platforms you will use (iOS and/or Android)
+
+![2](/images/guides/getting-started/push_platforms.png)
+
+After which you will be prompted to add the firebase service account JSON key file. 
+
+![2](/images/guides/getting-started/firebase_upload.png)
+
+This can be found in your firebase console: `https://console.firebase.google.com/u/0/project/[YOUR_PROJECT_NAME]/settings/serviceaccounts/adminsdk`. The page looks like the screenshot below and you generate the file by pressing the `Generate new private key` button
+
+![2](/images/guides/getting-started/firebasekey.png)
+
+Once uploaded the page should look something like this and you are good to go! You can skip uploading users at this point.
+
+![2](/images/guides/getting-started/server_key.png)
+
+### Setting up your user schema and user primary key
+
+To be able to add users you will need to tell Laudspeaker how you want to uniquely identify your users. For example you may have a special `user_id` field to uniquely define your users. To do this you need to navigate to the People page under Audience. 
+
+![2](/images/guides/getting-started/people_page.png)
+
+Then click on the Settings button.
+
+![2](/images/guides/getting-started/attributes.png)
+
+Here you can define your user's attributes and their types. Whats important for this tutorial is to add your unique identifier, and  then make sure it is selected as primary key
+
+![2](/images/guides/getting-started/primary_key.png)
+
+### Starting up the tutorial app
+
+We have two sample projects you can use, and ios and android one.
 
 Simply clone the project from our github repository here https://github.com/laudspeaker/react-toy-app .You'll need to do is change the api key and the application should work as intended. Then go ahead and run two commands
 
@@ -65,16 +105,6 @@ This journey is available as a template on your account, which you can navigate 
 We will explain its structure.
 
 When a user is enrolled in the journey, they start in the start step and then move to the wait until trigger. In the wait until step the users unsurprisingly, wait until, one of three events are triggered. The user then moves to the email step, receives the corresponding email, and then with the jump to loops back to the wait until step until another event is triggered.
-
-### Connecting a messaging channel in settings
-
-In this tutorial we use email, but the same ideas can be applied for our other channels including sms, and push.
-
-Messages like emails are sent via a dedicated delivery service. For email we currently support sendgrid and mailgun, which you can connect in settings:
-
-![2](/images/guides/getting-started/message_settings.png)
-
-![2](/images/guides/getting-started/sendgrid.png)
 
 ### Putting it all together
 
