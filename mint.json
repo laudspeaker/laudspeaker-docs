@@ -56,6 +56,7 @@
     {
       "group": "Getting Started",
       "pages": [
+        "getting-started/setting-up-mobile-push",
         "getting-started/setting-up-example-engagement-app"
       ]
     },
@@ -151,13 +152,8 @@
       "group": "Developer",
       "pages": [
         {
-          "group": "Deploy",
-          "pages": [
-            "developer/deploy/options"
-          ]
-        },
-        {
-          "group": "Setup",
+          "group": "Setup and Quickstart",
+          "icon": "bolt-lightning",
           "pages": [
             "developer/setup/generating-api-keys",
             "developer/setup/user-identification"
@@ -185,6 +181,7 @@
         },
         {
           "group": "SDKs",
+          "icon": "cube",
           "pages": [
             "developer/sdks/android",
             "developer/sdks/angular",
@@ -205,7 +202,13 @@
         },
         "developer/contributing-to-laudspeaker",
         "developer/how-laudspeaker-works",
-        "developer/webhooks"
+        "developer/webhooks",
+        {
+          "group": "Deploy",
+          "pages": [
+            "developer/deploy/options"
+          ]
+        }
       ]
     },
     {
