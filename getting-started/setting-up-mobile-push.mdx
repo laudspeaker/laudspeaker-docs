@@ -1,7 +1,7 @@
 ---
 title: "Sending your first mobile push messages"
 description:
-  "Running a sample web application that triggers emails with a Laudspeaker journey."
+  "A complete tutorial on setting up laudspeaker for sending your first mobile push notifications"
 icon: "mobile"
 ---
 
@@ -47,68 +47,91 @@ Here you can define your user's attributes and their types. Whats important for 
 
 ### Starting up the tutorial app
 
-We have two sample projects you can use, and ios and android one.
+We have two sample projects you can use, an ios: https://github.com/laudspeaker/ios-sample-app or android one: https://github.com/laudspeaker/android-sample-app . This tutorial will use the ios sample as the example but you can easily substitute with the android.
 
-Simply clone the project from our github repository here https://github.com/laudspeaker/react-toy-app .You'll need to do is change the api key and the application should work as intended. Then go ahead and run two commands
+You need to add the `GoogleService-Info.plist`, you can find this in the `General` tab of the `Project settings` in firebase
 
-```
-npm install 
-```
+![2](/images/guides/getting-started/general_tab.png)
 
-```
-npm run dev
-```
+Then you can download the file here:
 
-If you navigate to localhost on your browser the application should look like this:
+![2](/images/guides/getting-started/plist_firebase.png)
 
-![1](/images/guides/getting-started/example-events.png)
+For ios, once you have the application set up in xcode it should look something like:
 
-When you complete the journey, and link your app correctly when you click on reactivation, news or invoice you will be sent a specific email as shown in the video below.
+![2](/images/guides/getting-started/xcode.png)
 
-<iframe width="640" height="339" src="https://www.loom.com/embed/73be3a94483143349748bbb8b3dcc077?sid=ab8e845e-8377-4983-a208-ac3099a9afe9"> </iframe>
+Finally don't forget to make sure push capabilities are turned on for the app, as well as background fetch and 
 
-## Understanding the application
+![2](/images/guides/getting-started/capa.png)
 
-If you navigate to the `App.vue` you will see how events are fired.
+Next you will want to add the api key in the LaudspeakerManager file:
 
-```
-<template>
-  <div>
-    <div class="bg-[#F3F4F6] w-full min-h-screen">
-      <div class="p-[50px] flex justify-around gap-[20px]">
-        <button v-on:click="eventTest('reactivations')">reactivation</button>
-        <br />
-        <button v-on:click="eventTest('newslater')">news</button>
-        <br />
-        <button v-on:click="eventTest('invoices')">invoice</button>
-        <br />
-      </div>
-    </div>
-  </div>
-</template>
-```
+![2](/images/guides/getting-started/laudspeaker_manager.png)
 
-Each button, has a handler on a click `eventTest` , where we fire an event. The event is a `POST` request to `https://api.laudspeaker.com/events` with the following structure
+The relevant code is:
 
 ```
-correlationKey: 'email',
-correlationValue: '[your email here]',
-source: 'custom',
-event
+ laudspeaker = LaudspeakerCore(url: "https://app.laudspeaker.com/api/", apiKey: "oT5cNNyPPffC0kea9l7SYwXtT0TlgLXSx9TZEDsc")
 
 ```
+Now we are ready to start up the app!
+
+Once you start it up it should look something like:
+
+Each button, triggers a specific sdk function. Go ahead and press on the button which says `identify`
+
+Now that user should appear in laudspeakeer under the people tab:
+
+![2](/images/guides/getting-started/mobile_person.png)
+
+If you click the person you can see the details:
+
+![2](/images/guides/getting-started/person_details.png)
 
 ### Creating and starting our journey
 
-This journey is available as a template on your account, which you can navigate to `to do`.
+Now we are ready to create a journey and send a push. We will keep it simple.
+
+Go to the journey builder page and create a journey
+
+The empty journey should look like this:
+
+![2](/images/guides/getting-started/empty_journey.png)
+
+Then simply drag a push step to the canvas:
+
+You will then be prompted to add a push template:
+
+![2](/images/guides/getting-started/add_template.png)
+
+Go ahead and name the template:
+
+![2](/images/guides/getting-started/create_push.png)
+
+Add a message that you want:
+
+![2](/images/guides/getting-started/push_template.png)
+
+Don't forget to save after finalizing the message:
+
+![2](/images/guides/getting-started/save_push_template.png)
+
+The journey should now look like:
+
+![2](/images/guides/getting-started/journey_saved_push.png)
+
+![2](/images/guides/getting-started/complete_push.png)
 
 We will explain its structure.
 
-When a user is enrolled in the journey, they start in the start step and then move to the wait until trigger. In the wait until step the users unsurprisingly, wait until, one of three events are triggered. The user then moves to the email step, receives the corresponding email, and then with the jump to loops back to the wait until step until another event is triggered.
+When a user is enrolled in the journey, they start in the start step and then move to push step and receive the notification.
 
-### Putting it all together
+Now go ahead and start the journey:
 
-Set the journey live, and then re-start the app. Now when you click on the button, you should receive an email.
+Finally you should receive a notification!
 
-This tutorial shows how the basic ideas behind Laudspeaker work in practice. 
+
+
+
 
