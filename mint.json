@@ -56,9 +56,8 @@
     {
       "group": "Getting Started",
       "pages": [
-        "getting-started/setting-up-mobile-push",
-        "getting-started/setting-up-example-engagement-app"
-      ]
+        "getting-started/setting-up-events",
+        "getting-started/setting-up-mobile-push"      ]
     },
     {
       "group": "Product Manual",

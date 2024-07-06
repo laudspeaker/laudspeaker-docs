@@ -1,0 +1,140 @@
+---
+title: "Sending your first events"
+description:
+  "A complete tutorial on setting up laudspeaker for sending your first mobile push notifications"
+icon: "mobile"
+---
+
+This tutorial shows an end to end example on how to trigger a mobile push campaign. It includes a very simple ios or android application, and shows how to use the laudspeaker mobile sdks, how to trigger events, connect a journey, and finally sends a push notification.
+
+### Setting up firebase in Laudspeaker
+
+The first step in being able to send push notificaitons is setting up firebase in Laudspeaker. 
+
+You need to navigate to the settings page, select push
+
+![2](/images/guides/getting-started/push_options.png)
+
+Then you can select the platforms you will use (iOS and/or Android)
+
+![2](/images/guides/getting-started/push_platforms.png)
+
+After which you will be prompted to add the firebase service account JSON key file. 
+
+![2](/images/guides/getting-started/firebase_upload.png)
+
+This can be found in your firebase console: `https://console.firebase.google.com/u/0/project/[YOUR_PROJECT_NAME]/settings/serviceaccounts/adminsdk`. The page looks like the screenshot below and you generate the file by pressing the `Generate new private key` button
+
+![2](/images/guides/getting-started/firebasekey.png)
+
+Once uploaded the page should look something like this and you are good to go! You can skip uploading users at this point.
+
+![2](/images/guides/getting-started/server_key.png)
+
+### Setting up your user schema and user primary key
+
+To be able to add users you will need to tell Laudspeaker how you want to uniquely identify your users. For example you may have a special `user_id` field to uniquely define your users. To do this you need to navigate to the People page under Audience. 
+
+![2](/images/guides/getting-started/people_page.png)
+
+Then click on the Settings button.
+
+![2](/images/guides/getting-started/attributes.png)
+
+Here you can define your user's attributes and their types. Whats important for this tutorial is to add your unique identifier, and  then make sure it is selected as primary key
+
+![2](/images/guides/getting-started/primary_key.png)
+
+### Starting up the tutorial app
+
+We have two sample projects you can use, an ios: https://github.com/laudspeaker/ios-sample-app or android one: https://github.com/laudspeaker/android-sample-app . This tutorial will use the ios sample as the example but you can easily substitute with the android.
+
+You need to add the `GoogleService-Info.plist`, you can find this in the `General` tab of the `Project settings` in firebase
+
+![2](/images/guides/getting-started/general_tab.png)
+
+Then you can download the file here:
+
+![2](/images/guides/getting-started/plist_firebase.png)
+
+For ios, once you have the application set up in xcode it should look something like:
+
+![2](/images/guides/getting-started/xcode.png)
+
+Finally don't forget to make sure push capabilities are turned on for the app, as well as background fetch and 
+
+![2](/images/guides/getting-started/capa.png)
+
+Next you will want to add the api key in the LaudspeakerManager file:
+
+![2](/images/guides/getting-started/laudspeaker_manager.png)
+
+The relevant code is:
+
+```
+ laudspeaker = LaudspeakerCore(url: "https://app.laudspeaker.com/api/", apiKey: "oT5cNNyPPffC0kea9l7SYwXtT0TlgLXSx9TZEDsc")
+
+```
+Now we are ready to start up the app!
+
+Once you start it up it should look something like:
+
+![2](/images/guides/getting-started/example_app.PNG)
+
+Each button, triggers a specific sdk function. Go ahead and press on the button which says `identify`
+
+Now that user should appear in laudspeakeer under the people tab:
+
+![2](/images/guides/getting-started/mobile_person.png)
+
+If you click the person you can see the details:
+
+![2](/images/guides/getting-started/person_details.png)
+
+### Creating and starting our journey
+
+Now we are ready to create a journey and send a push. We will keep it simple.
+
+Go to the journey builder page and create a journey
+
+The empty journey should look like this:
+
+![2](/images/guides/getting-started/empty_journey.png)
+
+Then simply drag a push step to the canvas:
+
+You will then be prompted to add a push template:
+
+![2](/images/guides/getting-started/add_template.png)
+
+Go ahead and name the template:
+
+![2](/images/guides/getting-started/create_push.png)
+
+Add a message that you want:
+
+![2](/images/guides/getting-started/push_template.png)
+
+Don't forget to save after finalizing the message:
+
+![2](/images/guides/getting-started/save_push_template.png)
+
+The journey should now look like:
+
+![2](/images/guides/getting-started/journey_saved_push.png)
+
+Don't forget to add an exit step
+
+![2](/images/guides/getting-started/complete_push.png)
+
+We will explain its structure.
+
+When a user is enrolled in the journey, they start in the start step and then move to push step and receive the notification.
+
+Now go ahead and start the journey, and you will receive your first push!
+
+
+
+
+
+
