@@ -1,27 +1,36 @@
 ---
 title: "Send an Event"
 description: "Using external events as triggers in journeys."
-api: 'POST https://api.laudspeaker.com/events/'
+api: 'POST https://app.laudspeaker.com/api/events/batch/'
 
 ---
+
+For a walkthrough check out this [guide](getting-started/setting-up-events)
+
 <ParamField header="Authorization" type="string" required initialValue="Api-Key <LAUDSPEAKER_API_KEY>" placeholder="Api-Key <LAUDSPEAKER_API_KEY>">
   Header for authenticating with Laudspeaker. Starts with `Api-Key` followed by the API key, for example `Api-Key M4jxXt6diYz1Dds1YmhHe93KGPAUi24PlXgaiRXi`.
 </ParamField>
-<ParamField body="correlationKey" type="string" required placeholder="email">
-  This field specifies which user property we use to uniquely identify users. Common choices here include `user_id`, `email`, and `phone`. 
+<ParamField body="batch" type="Event[]" required placeholder="click">
+  This field contains the array of events. 
 </ParamField>
-<ParamField body="correlationValue" type="string" required placeholder="example@laudspeaker.com">
-  This field is the value that corresponds to the `correlationKey`, so if the `correlationKey` is `email`, then `correlationValue` could be `example@laudspeaker.com`.
-</ParamField>
-<ParamField body="event" type="string" required placeholder="click">
-  This the event string that you want to wait on in Laudspeaker. Examples include things like `click`, `change`, `login`, or `signup`.  
-</ParamField>
-<ParamField body="payload" type="json" optional placeholder="{}">
-  Further information to pass along with the event, for example if the `event` is `click`, the `payload` might contain the DOM element `id` that was clicked. You have the ability to further filter events using the `payload` in the Laudspeaker Journey Builder.
-</ParamField>
-<ParamField body="source" type="string" required default="custom" initialValue="custom">
-  This field is used internally by Laudspeaker to determine what event provider the event is being sent from. When manually sending requests using the API the value is always `custom`.
-</ParamField>
+
+An event looks like:
+
+```
+{
+      "timestamp": "2024-03-15T02:31:05.295Z",
+      "uuid": "F451DF0A-D713-4076-AE20-41AB1641BC98",
+      "event": "purchase",
+      "source": "mobile",
+      "correlationKey": "_id",
+      "payload": {
+        "cart": true
+      },
+      "correlationValue": "FBBBCB26-B75E-4342-B40B-568BF879F7C5"
+    },
+```
+
+An event must contain an **event** field (string), **correlationKey** field (string), **correlationValue** field (string), and a **source** set to **"custom"**
 
 ### Examples
 
