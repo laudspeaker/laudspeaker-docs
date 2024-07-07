@@ -56,6 +56,7 @@
     {
       "group": "Getting Started",
       "pages": [
+        "getting-started/setting-up-schema-and-channels",
         "getting-started/setting-up-events",
         "getting-started/setting-up-mobile-push"      ]
     },
@@ -108,7 +109,7 @@
     {
       "group": "Integrations",
       "pages": [
-        "integrate/integrating-custom-events",
+        "getting-started/setting-up-events",
         {
           "group": "Messaging Channels",
           "pages": [
@@ -161,6 +162,7 @@
           "icon": "bolt-lightning",
           "pages": [
             "developer/setup/generating-api-keys",
+      
             "developer/setup/user-identification"
           ]
         },
