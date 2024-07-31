@@ -200,11 +200,9 @@
                 "developer/sdks/ios/tracking-events"
               ]
             },
-            "developer/sdks/angular",
-            "developer/sdks/commonjs",
             "developer/sdks/react-native",
-            "developer/sdks/react",
-            "developer/sdks/vue"
+            "developer/sdks/flutter",
+            "developer/sdks/react"
           ]
         },
         "developer/contributing-to-laudspeaker",
