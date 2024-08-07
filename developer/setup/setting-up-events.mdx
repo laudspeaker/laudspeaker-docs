@@ -1,0 +1,192 @@
+---
+title: "Sending events to Laudspeaker"
+description:
+  "A tutorial for sending your first events to Laudspeaker"
+icon: "bolt"
+---
+
+### Laudspeaker Event Structure
+
+Laudspeaker supports the ingestion of events, and can ingest at a high throughput. Our endpoint `https://app.laudspeaker.com/api/events/batch/` accepts events in batches. From as little as one event in a batch. Lets start off with an example you can run and then explain what is happening:
+
+You can adapt the following curl example, by adding your api key (found in settings)
+
+![2](/images/guides/getting-started/api_key.png)
+
+
+
+```
+curl --location 'https://app.laudspeaker.com/api/events/batch/' \
+--header 'Authorization: Api-Key [your_key_here]' \
+--header 'Content-Type: application/json' \
+--data '{
+    "batch": [
+    {
+      "timestamp": "2024-03-15T02:31:05.295Z",
+      "uuid": "F451DF0A-D713-4076-AE20-41AB1641BC98",
+      "event": "purchase",
+      "source": "mobile",
+      "correlationKey": "_id",
+      "payload": {
+        "cart": true
+      },
+      "correlationValue": "FBBBCB26-B75E-4342-B40B-568BF879F7C5"
+    },
+    {
+      "timestamp": "2024-03-15T02:31:05.313Z",
+      "uuid": "A97E8A44-AAB0-45C6-B68D-3CAD9A0ED0DD",
+      "correlationKey": "_id",
+      "correlationValue": "FBBBCB26-B75E-4342-B40B-568BF879F7C5",
+      "source": "mobile",
+      "event": "agree_to_marketing",
+      "payload": {
+        "agreement": true
+      }
+    },
+    {
+      "correlationKey": "_id",
+      "source": "mobile",
+      "uuid": "24291D14-944D-4C7B-B0E4-EC98B8A9DF46",
+      "correlationValue": "FBBBCB26-B75E-4342-B40B-568BF879F7C5",
+      "event": "onboarding_started",
+      "payload": {
+        "service": "something",
+        "campaign": "utm-1234",
+        "tap": "open"
+      },
+      "timestamp": "2024-03-15T02:31:05.333Z"
+    },
+    {
+      "source": "mobile",
+      "correlationValue": "FBBBCB26-B75E-4342-B40B-568BF879F7C5",
+      "event": "onboarding_started",
+      "correlationKey": "_id",
+      "uuid": "46300C36-EB75-483D-9955-555233CE648C",
+      "payload": {
+        "service": "MY",
+        "user": "utm-234",
+        "tap": "main"
+      },
+      "timestamp": "2024-03-15T02:31:05.353Z"
+    },
+    {
+      "source": "mobile",
+      "correlationKey": "_id",
+      "correlationValue": "FBBBCB26-B75E-4342-B40B-568BF879F7C5",
+      "payload": {
+        "id": 2,
+        "service": "MY"
+      },
+      "timestamp": "2024-03-15T02:31:05.443Z",
+      "uuid": "C3EE7322-CBA2-49C4-B118-87DD86AAA5D0",
+      "event": "item_to_cart"
+    }
+  ]
+}'
+
+```
+
+and you should see the resulting events in the event tracker!
+
+![2](/images/guides/getting-started/example_events.png)
+
+### Breaking down the batch of events
+
+A batch consists of an array of events and looks like this:
+
+```
+{
+    "batch": [
+    {
+      "timestamp": "2024-03-15T02:31:05.295Z",
+      "uuid": "F451DF0A-D713-4076-AE20-41AB1641BC98",
+      "event": "checking_out",
+      "source": "custom"
+      "correlationKey": "_id",
+      "payload": {
+        "checkout": true
+      },
+      "correlationValue": "FBBBCB26-B75E-4342-B40B-568BF879F7C5"
+    }
+  ]
+}
+```
+
+Each event in the batch must adhere to the laudspeaker schema, at a minimum each event must contain an **event** field, **correlationKey** field, **correlationValue** field, and a **source** set to **"custom"**
+
+Optionally it should also contain a timestamp, and uuid like below:
+
+```
+    {
+      "timestamp": "2024-03-15T02:31:05.295Z",
+      "uuid": "F451DF0A-D713-4076-AE20-41AB1641BC98",
+      "event": "checking_out",
+      "source": "custom"
+      "correlationKey": "_id",
+      "correlationValue": "FBBBCB26-B75E-4342-B40B-568BF879F7C5"
+    }
+
+```
+
+To customize your event with data you want to send, you should include a payload object:
+
+```
+    {
+      "timestamp": "2024-03-15T02:31:05.295Z",
+      "uuid": "F451DF0A-D713-4076-AE20-41AB1641BC98",
+      "event": "checking_out",
+      "source": "custom"
+      "payload": {
+        "checkout": true
+      },
+      "correlationKey": "_id",
+      "correlationValue": "FBBBCB26-B75E-4342-B40B-568BF879F7C5"
+    }
+
+```
+
+Putting everything together an event batch could look like:
+
+```
+{
+    "batch": [
+    {
+      "timestamp": "2024-03-15T02:31:05.295Z",
+      "uuid": "F451DF0A-D713-4076-AE20-41AB1641BC98",
+      "event": "checking_out",
+      "source": "mobile"
+      "correlationKey": "_id",
+      "payload": {
+        "checkout": true
+      },
+      "correlationValue": "FBBBCB26-B75E-4342-B40B-568BF879F7C5"
+    },
+    {
+      "timestamp": "2024-03-15T02:31:05.313Z",
+      "uuid": "A97E8A44-AAB0-45C6-B68D-3CAD9A0ED0DD",
+      "correlationKey": "_id",
+      "correlationValue": "FBBBCB26-B75E-4342-B40B-568BF879F7C5",
+      "source": "mobile",
+      "event": "marketing_agreed",
+      "payload": {
+        "agreed_to_marketing": true
+      }
+    },
+  ]
+}
+```
+
+### API Endpoint
+
+Our event endpoint is:
+
+`https://app.laudspeaker.com/api/events/batch/`
+
+
+### Identifying users
+
+We are able to attribute events to the right users by using the correlationValue and correlationKey pair. The correlationKey tells Laudspeaker which unique attribute of a user to use when correlating an event with a user, and for custom events **should always be set to the primary key** of the user. The primary key of your users is set up under the audience tab:
+
+![2](/images/guides/getting-started/people_nav.png)
+
+![2](/images/guides/getting-started/primary_key_user.png)

@@ -158,12 +158,12 @@
       "group": "Developer",
       "pages": [
         {
-          "group": "Setup and Quickstart",
+          "group": "Quickstart",
           "icon": "bolt-lightning",
           "pages": [
-            "developer/setup/generating-api-keys",
-      
-            "developer/setup/user-identification"
+            "developer/setup/setting-up-schema-and-channels",
+            "developer/setup/setting-up-events",
+            "developer/setup/setting-up-mobile-push"
           ]
         },
         {
