@@ -27,11 +27,19 @@ We require one special property which is called the **primary key** to be a **un
 
 ![Example Flow](/images/guides/getting-started/primary_key_user.png)
 
+### Message Channels in the User Schema
+
+We also require you to set up message channels. Message Channels are how you tell Laudsepaker which attribute we should use to send messages.
+
+The reason we have message channels at all is because different Laudspeaker customers, use different conventions, for example some customers may use `email`, `Email`, `email_address` all to refer to the same thing. In the message channel section you explictly tell us what your convention is for the given message channels you use
+
+### Verifying schema is set up
+
 Once your schema is set up correctly, if you navigate back to the people page you will notice that you can now add users!
 
 ![Example Flow](/images/guides/getting-started/create-available.png)
 
-Once you start populating your users you will notice, we show two types of user properties split across Attributes and System Attributes. System Attributes are properties Laudspeaker sets by default.
+Once you start populating your users you will notice, we show two types of user properties split across Attributes and System Attributes. System Attributes are properties Laudspeaker collects by default.
 
 ![Example Flow](/images/guides/getting-started/people_attributes.png)
 

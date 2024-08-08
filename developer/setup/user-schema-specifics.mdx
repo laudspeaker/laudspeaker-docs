@@ -1,0 +1,31 @@
+---
+title: "Details about User Properties "
+description:
+  "An In-depth look at the user schema"
+icon: "people-group"
+---
+### Custom Attributes and System Attributes
+
+<Warning>Start at the "Setting up Laudspeaker" page before progressing here [Set Up](https://laudspeaker.com/docs/developer/setup/setting-up-schema-and-channels).</Warning>
+
+After setting up the user schema, and using laudspeaker you may notice that a given user has three sets of properties:
+
+1) Attributes
+2) System Attributes
+3) Message Channels
+
+![Example Flow](/images/guides/getting-started/custom_system_attributes.png)
+
+The `Attributes` that you see are the ones that you have set up in the user schema and want us to track; the system attributes that we have are automatically created and collected by Laudspeaker for each user, and cannot be changed manually.
+
+You cannot create custom attributes with the same names as system attributes, as those keywords are reserved.
+
+The system attributes we collect are:
+
+`other_ids` : an array of all the laudspeaker ids this user has had
+`createdAt` : when this user was first seen in the laudspeaker system
+
+### Message Channels 
+
+Message Channels are how you tell Laudsepaker which attribute we should use to send messages. You can see the users' specific email, sms, push etc field in this section. Message channel values can be changed for users, and are not treated as system attributes.
+

@@ -41,9 +41,9 @@
       "url": "https://laudspeakerusers.slack.com/join/shared_invite/zt-1li25huaq-BljJUA1Zm8dXvbZViAbMwg#/shared-invite/email"
     },
     {
-      "name": "Blog",
+      "name": "Try Laudspeaker",
       "icon": "newspaper",
-      "url": "https://laudspeaker.com/docs/blog/"
+      "url": "https://app.laudspeaker.com/"
     }
   ],
   "navigation": [
@@ -58,7 +58,9 @@
       "pages": [
         "getting-started/setting-up-schema-and-channels",
         "getting-started/setting-up-events",
-        "getting-started/setting-up-mobile-push"      ]
+        "getting-started/setting-up-mobile-push",
+        "getting-started/Importing-Users"    
+      ]
     },
     {
       "group": "Product Manual",
@@ -107,45 +109,53 @@
       ]
     },
     {
+      "group": "Messaging Channels",
+      "pages": [
+        {
+          "group": "Push",
+          "pages": [
+            "integrate/messaging-channels/push/firebase"
+          ]
+        },
+        {
+          "group": "Email",
+          "pages": [
+            "integrate/messaging-channels/email/mailgun",
+            "integrate/messaging-channels/email/sendgrid",
+            "integrate/messaging-channels/email/smtp",
+            "integrate/messaging-channels/email/mandrill",
+            "integrate/messaging-channels/email/mailchimp",
+            "integrate/messaging-channels/email/postmark",
+            "integrate/messaging-channels/email/sparkpost",
+            "integrate/messaging-channels/email/amazon-ses"
+          ]
+        },
+        {
+          "group": "SMS",
+          "pages": [
+            "integrate/messaging-channels/sms/twilio",
+            "integrate/messaging-channels/sms/vonage",
+            "integrate/messaging-channels/sms/podium",
+            "integrate/messaging-channels/sms/plivo",
+            "integrate/messaging-channels/sms/telnyx",
+            "integrate/messaging-channels/sms/wati",
+            "integrate/messaging-channels/sms/bandwidth"
+          ]
+        },
+        "integrate/messaging-channels/webhooks"
+      ]
+    },
+    {
       "group": "Integrations",
       "pages": [
-        "getting-started/setting-up-events",
-        {
-          "group": "Messaging Channels",
-          "pages": [
-            {
-              "group": "Push",
-              "pages": [
-                "integrate/messaging-channels/push/firebase"
-              ]
-            },
-            {
-              "group": "Email",
-              "pages": [
-                "integrate/messaging-channels/email/mailgun",
-                "integrate/messaging-channels/email/sendgrid",
-                "integrate/messaging-channels/email/smtp",
-                "integrate/messaging-channels/email/mandrill",
-                "integrate/messaging-channels/email/mailchimp",
-                "integrate/messaging-channels/email/postmark",
-                "integrate/messaging-channels/email/sparkpost",
-                "integrate/messaging-channels/email/amazon-ses"
-              ]
-            },
-            {
-              "group": "SMS",
-              "pages": [
-                "integrate/messaging-channels/sms/twilio",
-                "integrate/messaging-channels/sms/vonage",
-                "integrate/messaging-channels/sms/podium",
-                "integrate/messaging-channels/sms/plivo",
-                "integrate/messaging-channels/sms/telnyx",
-                "integrate/messaging-channels/sms/wati",
-                "integrate/messaging-channels/sms/bandwidth"
-              ]
-            }
-          ]
-        }
+        "getting-started/setting-up-events"
+      ]
+    },
+    {
+      "group": "Migrations",
+      "pages": [
+        "migrations/graduating-from-Braze",
+        "migrations/graduating-from-Firebase"  
       ]
     },
     {
@@ -163,7 +173,9 @@
           "pages": [
             "developer/setup/setting-up-schema-and-channels",
             "developer/setup/setting-up-events",
-            "developer/setup/setting-up-mobile-push"
+            "developer/setup/setting-up-mobile-push",
+            "developer/setup/user-schema-specifics",
+            "developer/setup/Importing-Users"
           ]
         },
         {
@@ -203,6 +215,13 @@
             "developer/sdks/react-native",
             "developer/sdks/flutter",
             "developer/sdks/react"
+          ]
+        },
+        {
+          "group": "Migrations",
+          "pages": [
+            "developer/graduating-from-Braze",
+            "developer/graduating-from-Firebase"  
           ]
         },
         "developer/contributing-to-laudspeaker",
