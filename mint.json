@@ -88,8 +88,17 @@
             "product-manual/segments"
           ]
         },
-            "product-manual/template-builder",
-            "product-manual/people-and-profiles",
+        "product-manual/template-builder",
+        {
+          "group": "Personalization and Scheduling",
+          "icon": "calendar-days",
+          "pages": [
+            "product-manual/personalization",
+            "product-manual/api-calls",
+            "product-manual/scheduling"
+          ]
+        },
+        "product-manual/people-and-profiles",
             {
               "group": "Message Channels",
               "icon": "comments",
