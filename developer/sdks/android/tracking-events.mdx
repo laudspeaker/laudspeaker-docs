@@ -1,0 +1,83 @@
+---
+title: "Tracking Events"
+description: "Understand the behaviour in your app by tracking and analysing events"
+---
+<Info> You should go through the installation guide first </Info>
+
+### Event Types
+
+Laudspeaker supports the tracking a few different types of events. 
+
+These include `default events`, `message events`, and `custom events`.
+
+#### Default Events
+
+Default events are tracked everytime a user uses your brand's app, and includes the following:
+
+`identify`
+
+We are in the process of adding:
+
+`start session`
+
+#### Message Events
+
+When a user opens a push notification, or interacts with an in-app message we also track those interactions, and these events can be used in journeys to trigger messages, or in segments as additional filters.
+
+#### Custom Events
+
+You can configure the tracking of custom events in your application, that are unique or important to your business.
+
+You can track a custom event by using the Laudspaker.fire function, which takes in an `event` as a parameter which is a string representing the name of your event and optionally a `payload``.
+
+### Example Implementation
+
+Here's an example with SwiftUI
+
+```
+import SwiftUI
+import LaudspeakerCore
+
+class LaudspeakerManager: ObservableObject {
+    let laudspeaker: LaudspeakerCore
+    
+    init() {
+        laudspeaker = LaudspeakerCore(url: "https://laudspeaker.com/", apiKey: "[YOUR_KEY]")
+    }
+}
+
+struct ContentView: View {
+    @StateObject private var laudspeakerManager = LaudspeakerManager()
+    
+    var body: some View {
+        VStack {
+            
+            Button("Connect") {
+                laudspeakerManager.laudspeaker.connect()
+            }
+            
+            Button("fire event") {
+                laudspeakerManager.laudspeaker.fire(event: "example_event")
+            }
+            
+            Button("Get customerId") {
+                print(laudspeakerManager.laudspeaker.getCustomerId())
+            }
+            Button("Disconnect") {
+                laudspeakerManager.laudspeaker.disconnect()
+            }
+            
+        }
+        .padding()
+    }
+}
+
+
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+
+```

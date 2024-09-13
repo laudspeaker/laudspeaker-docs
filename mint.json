@@ -211,7 +211,14 @@
           "group": "SDKs",
           "icon": "cube",
           "pages": [
-            "developer/sdks/android",
+            {
+              "group": "Android",
+              "pages": [
+                "developer/sdks/android",
+                "developer/sdks/android/adding-standard-push",
+                "developer/sdks/android/tracking-events"
+              ]
+            },
             {
               "group": "iOS",
               "pages": [

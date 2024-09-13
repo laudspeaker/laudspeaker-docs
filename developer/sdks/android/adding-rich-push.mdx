@@ -1,0 +1,55 @@
+---
+title: "Adding Rich Push Notifications"
+description: "Send rich push notificaitons to your iOS app"
+---
+
+<Warning> Rich push is still in beta and may not work as expected yet </Warning>
+
+<Info> Rich push notifications are push notifications with more than just text. For example rich push notifications can include media (images, video, gifs) or more complex interactivity. To be able to send and receive rich push notifications, you need to create a notification service extension </Info>
+
+### 1. Creating a service extension
+
+The first step is to add a service extension to your application. 
+
+File > New > Target in Xcode and select Notification Service Extension.
+
+![service](/images/developer/sdks/service.png)
+
+### 2. Setting up the notification service extension
+
+<Info> A notification service extension is its own binary that is bundled with your app. Make sure your notification service extension bundle identifier is based on your main app target bundle identifier. For example, if your main app is com.example.appWithLaudspeaker your notification service extension extension could be com.example.appWithLaudspeaker.NotificationExtension </Info>
+
+![bundlename](/images/developer/sdks/bundlename.png)
+
+Set the Deployment Target of your Notification Service Extension to the minimum version accepted by Xcode
+
+![minimum](/images/developer/sdks/minimum.png)
+
+When Xcode prompts you to activate the new scheme, answer Cancel to keep Xcode building and debugging your app instead of the extension:
+
+### 3. Integrating rich push notifications
+
+To add Manually:
+
+paste this code to into the NotificationServiceExtension file:
+
+```
+import LaudspeakerNotificationService
+
+class NotificationService: LaudspeakerNotificationService {}
+```
+
+### 4. Creating a rich notification and Testing
+
+To test, you will need a real device, and access to its firebase device token
+
+Then go to the template page and create a push notification  
+
+![template](/images/developer/sdks/template.png)
+
+Be sure to add an image
+
+![template_image](/images/developer/sdks/template_image.png)
+
+After you have designed a notification, select test, and find the test person with the aforementioned device token, and hit send
+

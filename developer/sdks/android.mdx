@@ -1,7 +1,38 @@
 ---
-title: "Android"
-description: "Add Laudspeaker to your Android app"
+title: "Android SDK Overview"
+description: "Add Laudspeaker to your android app"
 
 ---
 
-Coming soon!
+<Info> Laudspeaker currently requires users to also use firebase, you will need to install firebase seperately: https://firebase.google.com/docs/ios/setup , import the library in your project and add their required app delegate methods (example here: https://firebase.google.com/docs/cloud-messaging/ios/receive).  </Info>
+
+
+### Specific Tutorials 
+
+<CardGroup>
+<Card title="Adding Push Notifications" icon="readme" href="/developer/sdks/android/adding-push">
+  Start Here to send push notifications to your android app!
+</Card>
+
+<Card title="Tracking Events" icon="readme" href="/developer/sdks/android/tracking-events">
+  Track default, message and custom events to better understand your app!
+</Card>
+</CardGroup>
+
+### Installation
+
+To use Laudspeaker in your app you should add our package as a dependency. 
+
+You can do so using the swift package manager by searching for `laudspeaker-swift-sdk`:
+
+![search](/images/developer/sdks/search.png)
+
+And then adding the package:
+
+![package_manager](/images/developer/sdks/package_manager.png)
+
+Or manually from our repo available here: https://github.com/laudspeaker/laudspeaker-swift-sdk
+
+This package includes our NotificationExtensionService as well which you may use if you want rich push too.
+
+You also need to make sure firebase is installed correctly in your application, and incllude the right GoogleService-Info / Info files in your project
