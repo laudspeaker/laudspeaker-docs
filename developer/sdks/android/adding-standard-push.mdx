@@ -12,22 +12,28 @@ To use Laudspeaker you need to import Laudspeaker core, and then initialize with
 Here is an example code snippet:
 
 ```
-import SwiftUI
-import LaudspeakerCore
+package com.laudspeaker.myapplication
+import com.laudspeaker.android.LaudspeakerAndroid
+import com.laudspeaker.android.LaudspeakerAndroidConfig
+import org.koin.android.ext.koin.androidContext
+import org.koin.dsl.module
 
-class LaudspeakerManager: ObservableObject {
-    let laudspeaker: LaudspeakerCore
-    
-    init() {
-        laudspeaker = LaudspeakerCore(url: "https://laudspeaker.com/", apiKey: "[YOUR_KEY]")
+val appModule = module {
+    single {
+        val config = LaudspeakerAndroidConfig(
+            this.androidContext(),
+            "WjzfCfRwSXDtG3H6u72b4PGate0B1a4MDhu51j0x", //your api key found in laudspeaker settings
+            "https://app.laudspeaker.com/api",
+            MainActivity::class.java // Might need to adjust based on actual usage
+        )
+        LaudspeakerAndroid.with(get(), config)
     }
 }
-
 ```
 After that you need to connect:
 
 ```
-laudspeakerManager.laudspeaker.connect()
+something
 ```
 
 At this point your app should be able to receive push messages!

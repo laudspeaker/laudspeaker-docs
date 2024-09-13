@@ -32,51 +32,72 @@ You can track a custom event by using the Laudspaker.fire function, which takes 
 
 ### Example Implementation
 
-Here's an example with SwiftUI
+Here's an example:
 
 ```
-import SwiftUI
-import LaudspeakerCore
+import com.laudspeaker.android.Laudspeaker
 
-class LaudspeakerManager: ObservableObject {
-    let laudspeaker: LaudspeakerCore
-    
-    init() {
-        laudspeaker = LaudspeakerCore(url: "https://laudspeaker.com/", apiKey: "[YOUR_KEY]")
-    }
-}
+class MainActivity : AppCompatActivity() {
+    private var appBarConfiguration: AppBarConfiguration? = null
+    private var binding: ActivityMainBinding? = null
 
-struct ContentView: View {
-    @StateObject private var laudspeakerManager = LaudspeakerManager()
-    
-    var body: some View {
-        VStack {
-            
-            Button("Connect") {
-                laudspeakerManager.laudspeaker.connect()
-            }
-            
-            Button("fire event") {
-                laudspeakerManager.laudspeaker.fire(event: "example_event")
-            }
-            
-            Button("Get customerId") {
-                print(laudspeakerManager.laudspeaker.getCustomerId())
-            }
-            Button("Disconnect") {
-                laudspeakerManager.laudspeaker.disconnect()
-            }
-            
+    private val laudspeaker: Laudspeaker by inject()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
+        binding = ActivityMainBinding.inflate(
+            layoutInflater
+        )
+        setContentView(binding!!.getRoot())
+        setSupportActionBar(binding!!.toolbar)
+        val navController = findNavController(this, R.id.nav_host_fragment_content_main)
+        appBarConfiguration = Builder(navController.graph).build()
+        setupActionBarWithNavController(this, navController, appBarConfiguration!!)
+
+        laudspeaker.setNotificationIcon(R.drawable.ic_launcher_background)
+        laudspeaker.handlePushOpened(intent)
+        val identify_button = findViewById<Button>(R.id.identify_button)
+        identify_button.setOnClickListener {
+            val myMap: MutableMap<String, Any> = HashMap()
+            myMap["time"] = System.currentTimeMillis()
+            laudspeaker.identify("mahamad@laudspeaker.com", myMap)
         }
-        .padding()
+        val fire_button = findViewById<Button>(R.id.fire_button)
+        fire_button.setOnClickListener {
+            val myMap: MutableMap<String, Any> = HashMap()
+            myMap["time"] = System.currentTimeMillis()
+            println("Laudspeaker API: inside capture")
+            laudspeaker.fire("hello", myMap)
+        }
+        val switchToggle = findViewById<Switch>(R.id.switchToggle)
+        switchToggle.setOnCheckedChangeListener { buttonView, isChecked -> // Prevent the switch from changing state immediately
+            buttonView.isChecked = !isChecked
+            val map: MutableMap<String, Any> = HashMap()
+            map["notification_preferences"] = isChecked
+            laudspeaker.set(map)
+            buttonView.isChecked = isChecked
+        }
     }
-}
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        val id = item.itemId
+        return if (id == R.id.action_settings) {
+            true
+        } else super.onOptionsItemSelected(item)
+    }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(this, R.id.nav_host_fragment_content_main)
+        return navigateUp(navController, appBarConfiguration!!) || super.onSupportNavigateUp()
     }
 }
 
