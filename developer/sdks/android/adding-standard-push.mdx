@@ -1,15 +1,21 @@
 ---
-title: "Adding Standard Push Notifications"
-description: "Send rich push notificaitons to your iOS app"
+title: "Add Push Notifications"
+description: "Send push notificaitons to your android app"
 ---
 
-<Info> Page still in construction, check the rich tutorial and our sample application for more info! </Info>
+<Info> Page still in construction</Info>
 
 ### Integration
 
-To use Laudspeaker you need to import Laudspeaker core, and then initialize with the right endpoint, and api key. You can find your api key in Laudspeakers settings page
+To use Laudspeaker you need to import and install Laudspeaker, and then initialize with the right endpoint, and api key. You can find your api key in Laudspeakers settings page
 
-Here is an example code snippet:
+### Initialize Laudspeaker
+
+You can initialize laudspeaker in a few ways. 
+
+#### Dependency injection approach:
+
+In your AppModule.kt file, you provide the information to set up Laudspeaker correctly. Specifically you need to grab your api key from the settings page:
 
 ```
 package com.laudspeaker.myapplication
@@ -30,16 +36,64 @@ val appModule = module {
     }
 }
 ```
-After that you need to connect:
+
+![package_manager](/images/developer/sdks/app_module.png)
+
+After that in your main activity you can use Laudspeaker like this:
 
 ```
-something
-```
+package com.laudspeaker.myapplication
 
+import ...
+
+class MainActivity : AppCompatActivity() {
+    private var appBarConfiguration: AppBarConfiguration? = null
+    private var binding: ActivityMainBinding? = null
+
+    private val laudspeaker: Laudspeaker by inject()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
+        binding = ActivityMainBinding.inflate(
+            layoutInflater
+        )
+        ....
+
+        laudspeaker.setNotificationIcon(R.drawable.ic_launcher_background)
+        laudspeaker.handlePushOpened(intent)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        val id = item.itemId
+        return if (id == R.id.action_settings) {
+            true
+        } else super.onOptionsItemSelected(item)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        ...
+    }
+}
+```
 At this point your app should be able to receive push messages!
+
+If you want to see a sample application implementation go here ()
 
 ### Testing
 
 To test, you will need a real device, and access to its firebase device token
 
-Then go to the template page and create a push notification, and follow the same steps (just without an image) as in the rich push tutorial
+Then go to the template page and create a push notification, go to the test page, and select the device firebase token and send a push!
+
+![package_manager](/images/developer/sdks/push_template.png)
+
+![package_manager](/images/developer/sdks/push_test_firebase.png)
