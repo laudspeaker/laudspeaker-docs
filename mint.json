@@ -215,7 +215,7 @@
               "group": "Android",
               "pages": [
                 "developer/sdks/android",
-                "developer/sdks/android/adding-standard-push",
+                "developer/sdks/android/adding-push",
                 "developer/sdks/android/tracking-events"
               ]
             },
