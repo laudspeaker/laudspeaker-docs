@@ -4,8 +4,7 @@ description: "Add Laudspeaker to your android app"
 
 ---
 
-<Info> Laudspeaker currently requires users to also use firebase, you will need to install firebase seperately: https://firebase.google.com/docs/ios/setup , import the library in your project and add their required app delegate methods (example here: https://firebase.google.com/docs/cloud-messaging/ios/receive).  </Info>
-
+<Info> Laudspeaker currently requires users to also use firebase, you will need to install firebase seperately: https://firebase.google.com/docs/android/setup , import the library in your project and download the google-services.json.  </Info>
 
 ### Specific Tutorials 
 
@@ -23,16 +22,30 @@ description: "Add Laudspeaker to your android app"
 
 To use Laudspeaker in your app you should add our package as a dependency. 
 
-You can do so using the swift package manager by searching for `laudspeaker-swift-sdk`:
+In your Android project open your App `build.gradle (Module: app)` file, add 
 
-![search](/images/developer/sdks/search.png)
+```
+implementation("com.laudspeaker:laudspeaker-android:1.0.0")
+```
+
+to your dependencies section:
+
+![search](/images/developer/sdks/gradle_dep.png)
+
+Make sure to click sync now:
+
+![package_manager](/images/developer/sdks/sync.png)
 
 And then adding the package:
 
 ![package_manager](/images/developer/sdks/package_manager.png)
 
-Or manually from our repo available here: https://github.com/laudspeaker/laudspeaker-swift-sdk
+### Firebase
 
-This package includes our NotificationExtensionService as well which you may use if you want rich push too.
+You also need to make sure firebase is installed correctly in your application, and incllude the right google-services.json file in your project.
 
-You also need to make sure firebase is installed correctly in your application, and incllude the right GoogleService-Info / Info files in your project
+To do that change your view in android studio to the project view, and move the google-services.json file (which you can get from your firebase account) into into your module (app-level) root directory. 
+
+![package_manager](/images/developer/sdks/project_view.png)
+
+![package_manager](/images/developer/sdks/firebase_instructions.png)
