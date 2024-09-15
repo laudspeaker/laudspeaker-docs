@@ -3,15 +3,121 @@ title: "Add Push Notifications"
 description: "Send push notificaitons to your android app"
 ---
 
-<Info> Page still in construction</Info>
+<Info> Make sure you followed the installation instructions first, before proceeding here. You must have imported, and installed firebase first as well</Info>
 
 ### Integration
 
-To use Laudspeaker you need to import and install Laudspeaker, and then initialize with the right endpoint, and api key. You can find your api key in Laudspeakers settings page
+To use Laudspeaker you need to import and install Laudspeaker, and then initialize with the right endpoint, and api key. You can find your api key in Laudspeakers settings page. 
 
 ### Initialize Laudspeaker
 
 You can initialize laudspeaker in a few ways. 
+
+#### Direct Initialization
+
+You can import the following in your application class:
+
+```
+import com.laudspeaker.android.Laudspeaker
+import com.laudspeaker.android.LaudspeakerAndroid
+import com.laudspeaker.android.LaudspeakerAndroidConfig
+```
+
+and add the following before your onCreate method in your Application class.
+
+```
+private lateinit var laudspeaker: Laudspeaker
+```
+
+Then in the onCreate class:
+
+```
+FirebaseApp.initializeApp(this);
+        // Initialize LaudspeakerAndroidConfig without dependency injection
+        val config = LaudspeakerAndroidConfig(
+            "WjzfCfRwSXDtG3H6u72b4PGate0B1a4MDhu51j0x",
+            "https://app.laudspeaker.com/api",
+            MainActivity::class.java // Adjust if needed
+        )
+
+        // Initialize Laudspeaker and get the instance
+        laudspeaker = LaudspeakerAndroid.with(this, config)
+
+        // Now you can use 'laudspeaker' as needed
+        laudspeaker.setNotificationIcon(R.drawable.ic_launcher_background)
+        laudspeaker.handlePushOpened(intent)
+```
+
+A full example is as follows:
+
+```
+package com.example.examplewithlaudspeaer
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.examplewithlaudspeaer.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.FirebaseApp
+import com.laudspeaker.android.Laudspeaker
+import com.laudspeaker.android.LaudspeakerAndroid
+import com.laudspeaker.android.LaudspeakerAndroidConfig
+
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var binding: ActivityMainBinding
+
+    private lateinit var laudspeaker: Laudspeaker
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
+        FirebaseApp.initializeApp(this);
+        // Initialize LaudspeakerAndroidConfig without dependency injection
+        val config = LaudspeakerAndroidConfig(
+            "WjzfCfRwSXDtG3H6u72b4PGate0B1a4MDhu51j0x",
+            "https://app.laudspeaker.com/api",
+            MainActivity::class.java // Adjust if needed
+        )
+
+        // Initialize Laudspeaker and get the instance
+        laudspeaker = LaudspeakerAndroid.with(this, config)
+
+        // Now you can use 'laudspeaker' as needed
+        laudspeaker.setNotificationIcon(R.drawable.ic_launcher_background)
+        laudspeaker.handlePushOpened(intent)
+
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        appBarConfiguration = AppBarConfiguration(navController.graph)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        binding.fab.setOnClickListener { view ->
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null)
+                .setAnchorView(R.id.fab).show()
+        }
+
+        val fireButton = findViewById<Button>(R.id.fire_button)
+        fireButton.setOnClickListener {
+            val myMap: MutableMap<String, Any> = HashMap()
+            myMap["time"] = System.currentTimeMillis()
+            laudspeaker.fire("hello", myMap)
+        }
+    }
+
+```
+
 
 #### Dependency injection approach:
 

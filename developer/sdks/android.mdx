@@ -18,6 +18,50 @@ description: "Add Laudspeaker to your android app"
 </Card>
 </CardGroup>
 
+### Installing Firebase
+
+You need to make sure firebase is installed correctly in your application, before you can use Laudspeaker. To start you need to include the right google-services.json file in your project.
+
+To do that change your view in android studio to the project view, and move the google-services.json file (which you can get from your firebase account) into into your module (app-level) root directory. 
+
+![package_manager](/images/developer/sdks/project_view.png)
+
+![package_manager](/images/developer/sdks/firebase_instructions.png)
+
+Then you need to add the google services gradle plugin in the **project-level** build.gradle.kts
+
+```
+plugins {
+  // ...
+
+  // Add the dependency for the Google services Gradle plugin
+  id("com.google.gms.google-services") version "4.4.2" apply false
+
+}
+```
+
+after that:
+
+in your module (app-level) build.gradle.kts file, add both the google-services plugin and the Firebase SDKs that we need in your app:
+
+```
+plugins {
+  id("com.android.application")
+
+  // Add the Google services Gradle plugin
+  id("com.google.gms.google-services") version "4.4.0" apply false
+
+  ...
+  }
+
+dependencies {
+  // Import the Firebase BoM
+  implementation(platform("com.google.firebase:firebase-bom:33.3.0"))
+  implementation("com.google.firebase:firebase-messaging:23.4.0")
+}
+
+```
+
 ### Installation
 
 To use Laudspeaker in your app you should add our package as a dependency. 
@@ -35,16 +79,6 @@ to your dependencies section:
 Make sure to click sync now:
 
 ![package_manager](/images/developer/sdks/sync.png)
-
-### Firebase
-
-You also need to make sure firebase is installed correctly in your application, and incllude the right google-services.json file in your project.
-
-To do that change your view in android studio to the project view, and move the google-services.json file (which you can get from your firebase account) into into your module (app-level) root directory. 
-
-![package_manager](/images/developer/sdks/project_view.png)
-
-![package_manager](/images/developer/sdks/firebase_instructions.png)
 
 ### Initializing Laudspeaker
 
