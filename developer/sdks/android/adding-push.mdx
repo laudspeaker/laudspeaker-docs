@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         FirebaseApp.initializeApp(this);
         // Initialize LaudspeakerAndroidConfig without dependency injection
         val config = LaudspeakerAndroidConfig(
+            this,
             "WjzfCfRwSXDtG3H6u72b4PGate0B1a4MDhu51j0x",
             "https://app.laudspeaker.com/api",
             MainActivity::class.java // Adjust if needed
