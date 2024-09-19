@@ -198,9 +198,9 @@
               ]
             },
             {
-              "group": "identify",
+              "group": "Identify",
               "pages": [
-                "developer/api/events/identify"
+                "developer/api/identify/identify"
               ]
             },
             {
