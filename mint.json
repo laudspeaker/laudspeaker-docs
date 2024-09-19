@@ -198,6 +198,12 @@
               ]
             },
             {
+              "group": "identify",
+              "pages": [
+                "developer/api/events/identify"
+              ]
+            },
+            {
               "group": "Users",
               "pages": [
                 "developer/api/users/upsert",

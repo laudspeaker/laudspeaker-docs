@@ -1,0 +1,79 @@
+---
+title: "Identify a user"
+description: "Identifying users, and using external events as triggers in journeys."
+api: 'POST https://app.laudspeaker.com/api/events/batch/'
+
+---
+
+<Info> For a walkthrough check out this [guide](getting-started/setting-up-events)</Info>
+
+
+<ParamField header="Authorization" type="string" required initialValue="Api-Key <LAUDSPEAKER_API_KEY>" placeholder="Api-Key <LAUDSPEAKER_API_KEY>">
+  Header for authenticating with Laudspeaker. Starts with `Api-Key` followed by the API key, for example `Api-Key M4jxXt6diYz1Dds1YmhHe93KGPAUi24PlXgaiRXi`.
+</ParamField>
+<ParamField body="batch" type="Event[]" required placeholder="click">
+  This field contains the array of events. 
+</ParamField>
+
+An identify event looks like:
+
+```
+{
+    "batch": [
+    {
+      "timestamp": "2024-03-15T02:31:05.295Z",
+      "event": "$identify",
+      "source": "custom",
+      "correlationKey": "_id",
+      "payload": {
+        "distinct_id": "example@youremail.com"
+      },
+      "correlationValue": "FBBBCB26-B75E-4342-B40B-568BF879F7C5"
+    }
+  ]
+}
+```
+
+An identify event is a special case of our regular event. It contains an **event** field equal to **$identify**, and a **payload** object with a **distinct_id** which is equal to the primary key of your user. The correlationValue should also be a `uuid` that you keep consistent in your backend in subsequent calls to the same user.
+
+As a reminder the primary key of your user is defined in your user schema:
+![search](/images/developer/sdks/user_schema.png)
+
+If you are using one of our sdks, you can simply use the **Laudspeaker.identify()** call. If you are accessing our endpoint directly for example from your backend you will need to match the event structure described above.
+
+
+### Idenfitying and triggering a journey:
+
+If you want to trigger a message to a specific user that you have previously created in laudspeaker with an event, and are not using our sdk. You will want to send events to our batch endpoint. It will consist of two events in the batch - an identify call, follwed by a regular event like below:
+
+{
+    "batch": [
+    {
+      "timestamp": "2024-03-15T02:31:05.295Z",
+      "event": "$identify",
+      "source": "custom",
+      "correlationKey": "_id",
+      "payload": {
+        "distinct_id": "example@youremail.com"
+      },
+      "correlationValue": "FBBBCB26-B75E-4342-B40B-568BF879F7C5"
+    },
+    {
+      "timestamp": "2024-03-15T02:31:05.295Z",
+      "event": "trigger_some_message",
+      "source": "custom",
+      "correlationKey": "_id",
+      "payload": {
+        "some_value":"the_value"
+      },
+      "correlationValue": "FBBBCB26-B75E-4342-B40B-568BF879F7C5"
+    }
+  ]
+}
+
+Remember the correlationValue should also be a `uuid` that you keep consistent in your backend in subsequent calls to the same user.
+
+
+
+
+
