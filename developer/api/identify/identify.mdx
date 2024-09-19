@@ -46,6 +46,7 @@ If you are using one of our sdks, you can simply use the **Laudspeaker.identify(
 
 If you want to trigger a message to a specific user that you have previously created in laudspeaker with an event, and are not using our sdk. You will want to send events to our batch endpoint. It will consist of two events in the batch - an identify call, follwed by a regular event like below:
 
+```
 {
     "batch": [
     {
@@ -70,6 +71,7 @@ If you want to trigger a message to a specific user that you have previously cre
     }
   ]
 }
+```
 
 Remember the correlationValue should also be a `uuid` that you keep consistent in your backend in subsequent calls to the same user.
 
